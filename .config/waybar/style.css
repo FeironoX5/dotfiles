@@ -1,0 +1,107 @@
+@define-color bg-color rgba(22, 22, 22, 0.67);
+@define-color t-active-color rgba(255, 255, 255, 0.9);
+@define-color t-hover-color rgba(255, 255, 255, 0.7);
+@define-color t-color rgba(255, 255, 255, 0.4);
+@define-color t-green rgb(126, 230, 106);
+@define-color t-orange rgb(245, 132, 66);
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "SF Pro Display", Inter, "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+tooltip label {
+    margin: 0 6px;
+}
+
+/* Waybar Styles */
+#waybar.top {
+    background: @bg-color;
+}
+
+#waybar.top > box.horizontal {
+    /* padding: 0 23px; */
+    padding: 3px 30px;
+}
+
+/* Modules Left */
+/* hyprland/workspaces */
+
+#workspaces button,
+#workspaces button:hover,
+#workspaces button:focus {
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+#workspaces button {
+    color: @t-color;
+    margin: 0 10px 0 0;  /* Tiny right margin only */
+    min-width: 0;       /* Critical: disable min-width */
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    color: @t-hover-color;
+}
+
+#workspaces button.active {
+    color: @t-active-color;
+}
+
+
+/* hyprland/window */
+#window {
+    margin-left: 5px;
+    margin-right: 30px;
+    color: @t-active-color;
+}
+
+/* Modules Center */
+/* custom/lichess */
+#custom-letterboxd,
+#custom-lichess,
+#custom-codeforces {
+    color: @t-color;
+}
+
+/* Modules Right */
+.modules-right {
+    color: @t-color;
+}
+
+#language {
+    margin: 5px 0;
+    padding: 0 5px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 600;
+    border: @t-color 1px solid;
+}
+
+/* custom/vpn */
+#custom-vpn {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+#custom-vpn.connected {
+    color: @t-green;
+}
+
+#custom-vpn.loading {
+    color: @t-orange;
+}
+
+#custom-vpn.disconnected {
+    opacity: 0.6;
+}
+
+#battery.warning {
+    color: #d15049;
+}

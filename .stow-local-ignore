@@ -1,0 +1,11 @@
+^\.git$
+^\.github$
+\.swp$
+\.swo$
+\.swn$
+\.bak$
+.*\.md$
+^README
+^LICENSE
+^\.gitignore$
+^\.stow-local-ignore$

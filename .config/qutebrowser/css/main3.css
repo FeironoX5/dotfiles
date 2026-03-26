@@ -1,0 +1,106 @@
+*:not(i) {
+    font-family:
+        "SF Pro", Inter, "JetBrainsMono Nerd Font", "Noto Sans", sans-serif !important;
+    line-height: 1.16667;
+    font-weight: 400;
+    letter-spacing: 0.009em;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    gap: 0px !important;
+}
+body {
+    margin: 0 !important;
+    background: #1a1a1a !important;
+}
+body *:not(script) {
+    display: none;
+}
+script {
+    display: block;
+    opacity: 0;
+}
+main,
+#results,
+#results * {
+    display: block !important;
+}
+section {
+    margin-block: 0 !important;
+}
+#results {
+    margin: 0 !important;
+    transform: none !important;
+    transition: none !important;
+}
+.poster {
+    width: 44vh !important;
+    height: 66vh !important;
+    background-size: cover !important;
+    margin: 0 auto !important;
+    margin-top: 28px !important;
+    margin-bottom: 15px !important;
+}
+p {
+    margin: 10px auto !important;
+}
+p,
+b {
+    color: white !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    text-decoration: none !important;
+    opacity: 0.8 !important;
+    font-weight: 600 !important;
+}
+p a {
+    margin: 0 !important;
+}
+/*::-webkit-scrollbar {
+    display: none!important;
+}
+
+
+nav, header, footer, p, section:not(#film-results) {
+    display: none!important;
+}
+
+main {
+    min-height: unset!important;
+}
+
+
+
+.film-cover {
+
+}
+
+.title {
+    color: white!important;
+    font-size: 16px!important;
+    font-style:normal!important;
+    text-decoration: none!important;
+    opacity: 0.8!important;
+    font-weight: 600!important;
+}
+
+.result {
+    margin: 0 auto!important;
+    width:200px!important;
+    height:100px!important;
+    display: block!important;
+}
+
+
+
+/*html {
+    -webkit-filter: invert(90%) hue-rotate(180deg)!important;
+    filter: invert(90%) hue-rotate(180deg)!important;
+}
+
+html, body {
+    background: none!important;
+}*/

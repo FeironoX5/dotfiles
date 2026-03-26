@@ -1,0 +1,248 @@
+// This configuration is merged with the default vicinae configuration file, which you can obtain by running the `vicinae config default` command.
+// Every item defined in this file takes precedence over the values defined in the default config or any other imported file.
+//
+// You can make manual edits to this file, however you should keep in mind that this file may be written to by vicinae when a configuration change is made through the GUI.
+// When that happens, any custom comments or formatting will be lost.
+//
+// If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
+//
+// Learn more about configuration at https://docs.vicinae.com/config
+
+{
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "close_on_focus_loss": true,
+   "pop_to_root_on_close": true,
+   "activate_on_single_click": true,
+   "favicon_service": "google",
+   "font": {
+      "rendering": "qt",
+      "normal": {
+         "size": 11.5
+      }
+   },
+   "theme": {
+      "dark": {
+         "name": "vicinae-dark",
+         "icon_theme": "Colloid-Dark"
+      }
+   },
+   "telemetry": {
+      "system_info": false
+   },
+   "launcher_window": {
+      "opacity": 0.98
+   },
+   "keybinds": {
+      "action.move-down": "control+J",
+      "action.move-up": "control+K",
+      "action.open": "control+L",
+      "action.pin": "control+P",
+      "open-search-filter": "control+F",
+      "toggle-action-panel": "control+M"
+   },
+   "favorites": [
+      "core:settings"
+   ],
+   "providers": {
+      "@dagimg-dot/store.vicinae.wifi-commander": {
+         "entrypoints": {
+            "manage-saved-networks": {
+               "alias": "~wifi"
+            }
+         }
+      },
+      "@knoopx/store.vicinae.github": {
+         "entrypoints": {
+            "issues": {
+               "alias": "~ghis"
+            },
+            "myRepositories": {
+               "alias": "~ghr"
+            },
+            "pullRequests": {
+               "alias": "~ghpr"
+            }
+         }
+      },
+      "@knoopx/store.vicinae.niri": {
+         "entrypoints": {
+            "pick-color": {
+               "alias": "~color"
+            },
+            "windows": {
+               "alias": "~winds"
+            }
+         }
+      },
+      "@knoopx/store.vicinae.systemd": {
+         "entrypoints": {
+            "services": {
+               "alias": "~sysd"
+            }
+         }
+      },
+      "@leonkohli/store.vicinae.process-manager": {
+         "entrypoints": {
+            "kill": {
+               "alias": "pkill"
+            },
+            "processes": {
+               "alias": "~plist"
+            }
+         }
+      },
+      "@mattisssa/store.raycast.spotify-player": {
+         "entrypoints": {
+            "nowPlaying": {
+               "alias": "~sn"
+            },
+            "togglePlayPause": {
+               "alias": "~sp"
+            },
+            "yourLibrary": {
+               "alias": "~sl"
+            }
+         }
+      },
+      "@pavle99/store.vicinae.zed-recents": {
+         "entrypoints": {
+            "open-recents": {
+               "alias": "~zr"
+            }
+         }
+      },
+      "@thomaslombart/store.raycast.todoist": {
+         "entrypoints": {
+            "create-task": {
+               "alias": "~tcr"
+            },
+            "quick-add-task": {
+               "alias": "todo"
+            }
+         }
+      },
+      "applications": {
+         "preferences": {
+            "defaultAction": "launch",
+            "paths": [
+               "/home/glebkiva/.local/share/applications",
+               "/home/glebkiva/.local/share/flatpak/exports/share/applications",
+               "/var/lib/flatpak/exports/share/applications",
+               "/usr/local/share/applications",
+               "/usr/share/applications"
+            ],
+            "launchPrefix": "uwsm app --"
+         },
+         "entrypoints": {
+            "appimagekit_40cf3bc19439bf86d554e8ae0970f271-Todoist": {
+               "alias": "todos"
+            }
+         }
+      },
+      "browser-extension": {
+         "enabled": false
+      },
+      "clipboard": {
+         "preferences": {
+            "encryption": false,
+            "eraseOnStartup": false,
+            "ignorePasswords": false,
+            "monitoring": true
+         },
+         "entrypoints": {
+            "history": {
+               "preferences": {
+                  "defaultAction": "copy"
+               }
+            }
+         }
+      },
+      "core": {
+         "enabled": true,
+         "entrypoints": {
+            "about": {
+               "enabled": false
+            },
+            "documentation": {
+               "enabled": false
+            },
+            "forget-telemetry": {
+               "enabled": false
+            },
+            "inspect-local-storage": {
+               "enabled": false
+            },
+            "keybind-settings": {
+               "enabled": true
+            },
+            "manage-fallback": {
+               "enabled": false
+            },
+            "oauth-token-store": {
+               "enabled": false
+            },
+            "open-config-file": {
+               "enabled": true
+            },
+            "open-default-config": {
+               "enabled": false
+            },
+            "prune-memory": {
+               "enabled": false
+            },
+            "refresh-apps": {
+               "enabled": true
+            },
+            "reload-scripts": {
+               "enabled": false
+            },
+            "report-bug": {
+               "enabled": false
+            },
+            "search-builtin-icons": {
+               "enabled": false
+            },
+            "search-emojis": {
+               "enabled": true
+            },
+            "settings": {
+               "enabled": true
+            },
+            "sponsor": {
+               "enabled": false
+            },
+            "store": {
+               "enabled": true
+            }
+         }
+      },
+      "developer": {
+         "enabled": false,
+         "entrypoints": {
+            "create": {
+               "enabled": false
+            }
+         }
+      },
+      "files": {
+         "enabled": false
+      },
+      "power": {
+         "enabled": false
+      },
+      "scripts": {
+         "preferences": {
+            "customDirs": [
+               "/home/glebkiva/scripts"
+            ]
+         }
+      },
+      "system": {
+         "entrypoints": {
+            "browse-apps": {
+               "enabled": true
+            }
+         }
+      }
+   }
+}

@@ -1,0 +1,30 @@
+#logo {
+    display: none;
+}
+::-webkit-scrollbar {
+    display: none!important;
+}
+*:not(i)  {
+    font-family: "SF Pro", Inter, "JetBrainsMono Nerd Font", "Noto Sans", sans-serif!important;
+    line-height: 1.16667;
+    font-weight: 400;
+    letter-spacing: .009em;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+header, footer {
+    display: none!important;
+}
+.bottom {
+    border-top: 0!important;
+}
+
+.wind img {
+    height: 15px!important;
+    margin-right: 2px!important;
+    margin-bottom: 2px!important;
+}

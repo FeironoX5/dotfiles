@@ -1,0 +1,86 @@
+
+font-family = Iosevka Term
+font-size = 14
+
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+cursor-style = underline
+cursor-style-blink = false
+cursor-color = #e6edf3
+
+window-padding-x = 16
+window-padding-y = 12
+
+macos-titlebar-style = hidden
+
+window-theme = dark
+
+window-colorspace = display-p3
+
+window-new-tab-position = end
+
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+scrollback-limit = 10000
+
+mouse-scroll-multiplier = 3
+
+
+macos-option-as-alt = left
+
+quit-after-last-window-closed = true
+
+confirm-close-surface = false
+
+
+background              = #0d1117
+foreground              = #e6edf3
+selection-background    = #264f78
+selection-foreground    = #e6edf3
+
+palette = 0=#484f58
+palette = 1=#ff7b72
+palette = 2=#3fb950
+palette = 3=#d29922
+palette = 4=#58a6ff
+palette = 5=#bc8cff
+palette = 6=#39c5cf
+palette = 7=#b1bac4
+
+palette = 8=#6e7681
+palette = 9=#ffa198
+palette = 10=#56d364
+palette = 11=#e3b341
+palette = 12=#79c0ff
+palette = 13=#d2a8ff
+palette = 14=#56d4dd
+palette = 15=#cdd9e5
+
+
+keybind = ctrl+k=scroll_page_lines:-3
+keybind = ctrl+j=scroll_page_lines:3
+
+keybind = alt+k=scroll_page_up
+keybind = alt+j=scroll_page_down
+
+keybind = alt+h=esc:b
+keybind = alt+l=esc:f
+
+keybind = alt+shift+k=jump_to_prompt:-1
+keybind = alt+shift+j=jump_to_prompt:1
+
+keybind = ctrl+shift+h=previous_tab
+keybind = ctrl+shift+l=next_tab
+
+keybind = ctrl+1=goto_tab:1
+keybind = ctrl+2=goto_tab:2
+keybind = ctrl+3=goto_tab:3
+keybind = ctrl+4=goto_tab:4
+keybind = ctrl+5=goto_tab:5
+keybind = ctrl+6=goto_tab:6
+keybind = ctrl+7=goto_tab:7
+keybind = ctrl+8=goto_tab:8
+keybind = ctrl+9=goto_tab:9

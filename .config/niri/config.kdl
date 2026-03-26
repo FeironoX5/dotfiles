@@ -1,0 +1,391 @@
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "vicinae" "server"
+spawn-at-startup "lavalauncher"
+spawn-sh-at-startup "swaybg -o eDP-1 -i $(cat ~/.config/wallpaper-last.txt) -m fill"
+spawn-at-startup "keepassxc"
+
+input {
+    // todo disable-power-key-handling
+    // warp-mouse-to-focus mode="center-xy-always"
+    focus-follows-mouse
+    mod-key "Super"
+
+
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options ""
+            // options "grp:alt_shift_toggle"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        dwt
+        drag true
+        //
+        accel-speed 0.02
+        accel-profile "adaptive"
+        //
+        natural-scroll
+        scroll-method "two-finger"
+        scroll-factor horizontal=1.0 vertical=0.7
+    }
+}
+
+output "eDP-1" {
+    mode "3072x1920@165.002"
+    variable-refresh-rate
+    scale 1.8
+}
+
+workspace "anchor" {
+    layout {
+        center-focused-column "on-overflow"
+        // center-focused-column "never"
+    }
+}
+
+cursor {
+    xcursor-theme "macOS"
+    xcursor-size 23
+}
+
+binds {
+    F12 { switch-layout "next"; }
+    //
+    Mod+H cooldown-ms=70 { focus-window-up-or-column-left; }
+    Mod+J cooldown-ms=70 { focus-workspace-down; }
+    Mod+K cooldown-ms=70 { focus-workspace-up; }
+    Mod+L cooldown-ms=70 { focus-window-down-or-column-right; }
+    Mod+Shift+H repeat=false { consume-or-expel-window-left; }
+    Mod+Shift+J repeat=false { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K repeat=false { move-window-up-or-to-workspace-up; }
+    Mod+Shift+L repeat=false { consume-or-expel-window-right; }
+    //
+    Alt+Tab repeat=false { spawn-sh "~/scripts/niri_switch.sh"; }
+    Mod+M repeat=false { spawn-sh "~/scripts/niri_switch.sh"; }
+    Mod+Shift+M repeat=false { move-window-to-workspace "anchor"; }
+    Mod+1 repeat=false { focus-workspace 3; }
+    Mod+2 repeat=false { focus-workspace 4; }
+    Mod+3 repeat=false { focus-workspace 5; }
+    Mod+4 repeat=false { focus-workspace 6; }
+    //
+    Mod+Q repeat=false { spawn "ghostty"; }
+    //
+    Mod+W repeat=false { close-window; }
+    Mod+F repeat=false { switch-preset-column-width; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
+    Mod+P repeat=false { toggle-window-floating; }
+    //
+    Mod+R repeat=false { spawn-sh "~/scripts/wallpaper-launcher.sh"; }
+    Mod+Grave repeat=false { toggle-overview; }
+    Mod+Escape repeat=false { spawn "hyprlock"; }
+    Mod+Space repeat=false { spawn "vicinae" "toggle"; }
+    Mod+B repeat=false { spawn "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=buffer --file-forwarding org.gnome.gitlab.cheywood.Buffer"; }
+    Mod+V repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
+    //
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+}
+
+recent-windows {
+    binds {
+        Mod+Tab { next-window; }
+    }
+
+    highlight {
+        padding 15
+        corner-radius 8
+    }
+
+    previews {
+        max-height 300
+        max-scale 1
+    }
+}
+
+layout {
+    gaps 1
+    always-center-single-column
+    center-focused-column "never"
+    // center-focused-column "on-overflow"
+    empty-workspace-above-first
+    default-column-display "normal"
+    background-color "#00000000"
+
+    preset-column-widths {
+        proportion 0.4
+        proportion 0.6
+        proportion 0.95
+    }
+
+    default-column-width { proportion 0.95; }
+
+    border {
+        on
+        width 1
+        active-gradient from="#a0a0a022" to="#373633ff" angle=45
+        inactive-color "#37363355"
+        urgent-color "#9b0000"
+    }
+
+    shadow {
+        on
+        softness 60
+        spread 3
+        offset x=0 y=12
+        draw-behind-window true
+        color "#00000088"
+        inactive-color "#00000030"
+    }
+
+    focus-ring {
+        off
+    }
+
+    struts {
+        left 0
+        right 0
+        top 0
+        bottom 35
+    }
+
+    tab-indicator {
+        width 10
+        gap 2
+        length total-proportion=0.5
+        position "bottom"
+        place-within-column
+        active-color "#4c4e63"
+        inactive-color "#1b1c26"
+        corner-radius 3
+        hide-when-single-tab
+        gaps-between-tabs 3
+    }
+}
+
+blur {
+    passes 3
+    offset 3
+    noise 0.03
+    saturation 5
+}
+
+layer-rule {
+    match namespace="^waybar$"
+    background-effect {
+        blur true
+        noise 0.03
+        saturation 1.5
+    }
+    opacity 0.85
+}
+
+layer-rule {
+    match namespace="^lhp.LavaLauncher$"
+    background-effect {
+        blur true
+        xray false
+        noise 0.04
+        saturation 2.2
+    }
+    geometry-corner-radius 16
+    opacity 0.72
+}
+
+layer-rule {
+    match namespace="^vicinae$"
+    background-effect {
+        blur true
+        noise 0.03
+        saturation 1.5
+    }
+}
+
+window-rule {
+    open-fullscreen false
+    open-maximized false
+    clip-to-geometry true
+    geometry-corner-radius 7
+    background-effect {
+        blur true
+        xray true
+    }
+    opacity 0.9
+}
+
+overview {
+    zoom 0.25
+    backdrop-color "#000"
+    workspace-shadow {
+        off
+    }
+}
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+// animations {
+//     window-open {
+//         duration-ms 500
+//         curve "ease-out-expo"
+//     }
+//     window-close {
+//         duration-ms 200
+//         curve "ease-out-quad"
+//     }
+
+animations {
+    // macOS-like: slightly slower and springier than niri defaults
+    slowdown 1.0
+
+    // Workspace switch — smooth spring like Spaces
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
+    }
+
+    // Window open — scale up from center + fade, like macOS app launch
+    window-open {
+        duration-ms 280
+        curve "cubic-bezier" 0.2 0.0 0.0 1.0
+
+        custom-shader r"
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                // Scale up from 85% to 100% while fading in
+                float progress = niri_clamped_progress;
+                float scale = 0.85 + 0.15 * progress;
+
+                // Remap coords to simulate scale-from-center
+                vec2 center = vec2(0.5, 0.5);
+                vec2 coords = (coords_geo.xy - center) / scale + center;
+
+                vec4 color = vec4(0.0);
+                if (coords.x >= 0.0 && coords.x <= 1.0 &&
+                    coords.y >= 0.0 && coords.y <= 1.0) {
+                    color = texture2D(niri_tex_next, (niri_geo_to_tex_next * vec3(coords, 1.0)).xy);
+                }
+
+                // Fade in
+                color *= progress;
+                return color;
+            }
+        "
+    }
+
+    // Window close — scale down + fade out, like macOS close
+    window-close {
+        duration-ms 200
+        curve "cubic-bezier" 0.4 0.0 1.0 1.0
+
+        custom-shader r"
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                float progress = niri_clamped_progress;
+                float scale = 1.0 - 0.15 * progress;
+
+                vec2 center = vec2(0.5, 0.5);
+                vec2 coords = (coords_geo.xy - center) / scale + center;
+
+                vec4 color = vec4(0.0);
+                if (coords.x >= 0.0 && coords.x <= 1.0 &&
+                    coords.y >= 0.0 && coords.y <= 1.0) {
+                    color = texture2D(niri_tex_curr, (niri_geo_to_tex_curr * vec3(coords, 1.0)).xy);
+                }
+
+                // Fade out
+                color *= (1.0 - progress);
+                return color;
+            }
+        "
+    }
+
+    // Scrolling — fluid like macOS momentum scroll
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
+    }
+
+    // Window movement within workspace
+    window-movement {
+        spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
+    }
+
+    // Resize — snappy like macOS window resize
+    window-resize {
+        spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
+
+        custom-shader r"
+            vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+                // Crossfade between old and new size
+                vec3 coords_next = niri_geo_to_tex_next * coords_curr_geo;
+                vec3 coords_curr = niri_geo_to_tex_curr * coords_curr_geo;
+
+                vec4 color_next = texture2D(niri_tex_next, coords_next.st);
+                vec4 color_curr = texture2D(niri_tex_curr, coords_curr.st);
+
+                return mix(color_curr, color_next, niri_clamped_progress);
+            }
+        "
+    }
+
+    // Overview zoom — like macOS Mission Control
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
+    }
+
+    // Config notifications — gentle bounce
+    config-notification-open-close {
+        spring damping-ratio=0.7 stiffness=800 epsilon=0.001
+    }
+}
+
+window-rule {
+    match app-id="ghostty"
+    open-floating true
+    default-column-width { proportion 0.4; }
+    default-window-height { fixed 400; }
+    default-column-display "tabbed"
+    open-focused false
+    default-floating-position x=20 y=50 relative-to="bottom-right"
+}
+
+window-rule {
+    match title="Картинка в картинке"
+    open-floating true
+    default-column-width { fixed 400; }
+    default-window-height { fixed 300; }
+}
+
+window-rule {
+    match app-id="Todoist"
+    default-column-width { proportion 0.4; }
+}
+window-rule {
+    match app-id="org.telegram.desktop"
+    default-column-width { proportion 0.6; }
+}
+
+window-rule {
+    match title="Blanket"
+    open-floating true
+}
+
+window-rule {
+    match app-id="albert"
+    geometry-corner-radius 13
+    open-focused true
+    open-floating true
+    default-floating-position x=0 y=400 relative-to="top"
+}
+
+prefer-no-csd
+
+debug {
+	honor-xdg-activation-with-invalid-serial
+}

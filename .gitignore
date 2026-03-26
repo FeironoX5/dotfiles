@@ -1,0 +1,41 @@
+# Sensitive files — never commit these
+# MCP server tokens live here — NEVER add this directory to dotfiles
+.config/secrets/
+
+.ssh/aeza
+.ssh/id_rsa
+.ssh/id_rsa.pub
+.ssh/known_hosts*
+.ssh/environment-*
+
+# Zed backup / generated
+.config/zed/settings_backup.json
+
+# Neovim — nested git repo (add as submodule if you want it tracked)
+.config/nvim/.git
+.config/nvim/lazy-lock.json
+.config/nvim/spell/
+
+# Rofi generated
+.config/rofi/1
+
+# Qutebrowser session/history (keep only config)
+.config/qutebrowser/autoconfig.yml
+.config/qutebrowser/bookmarks/
+.config/qutebrowser/quickmarks
+.config/qutebrowser/greasemonkey/
+
+# Cairo dock (not managed — too noisy)
+.config/cairo-dock/
+
+# General
+*.swp
+*.swo
+*.swn
+*.bak
+.zcompdump*
+
+scripts/goxray_cli_args
+scripts/letterboxd*
+*.log
+.bash*

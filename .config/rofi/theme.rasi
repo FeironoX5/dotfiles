@@ -1,0 +1,4 @@
+configuration {
+  show-icons: true;
+  icon-theme: "Papyrus";  // Ensure the theme name is quoted and installed
+}

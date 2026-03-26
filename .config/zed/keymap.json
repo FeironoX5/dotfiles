@@ -1,0 +1,398 @@
+[
+    // === NO CONTEXT (global) ===
+    {
+        "bindings": {
+            // === leftalt (alt) ===
+            // для работы с проектом
+            "alt-space": "command_palette::Toggle",
+            "alt-w": "pane::CloseActiveItem",
+            "alt-s": "zed::OpenSettings",
+            "alt-d": "debugger::Start",
+            "alt-r": "task::Spawn",
+            "alt-f": "workspace::NewSearch",
+            "alt-t": "workspace::NewTerminal",
+            "alt-c": "editor::DiffClipboardWithSelection",
+            "alt-o": "projects::OpenRecent",
+            "alt-n": "tab_switcher::ToggleAll",
+            "alt-p": "pane::TogglePinTab",
+            // focus panes
+            "alt s": "outline_panel::ToggleFocus",
+            "alt g": "git_panel::ToggleFocus",
+            "alt e": "editor::ToggleFocus",
+            "alt t": "terminal_panel::ToggleFocus",
+            "alt a": "agent::ToggleFocus",
+            "alt d": "debug_panel::ToggleFocus",
+            "alt f": "project_panel::ToggleFocus",
+            "alt-1": "git_panel::ToggleFocus",
+            "alt-2": "outline_panel::ToggleFocus",
+            "alt-3": "editor::ToggleFocus",
+            "alt-4": "project_panel::ToggleFocus",
+            // layout
+            // TODO
+            // git
+            "alt-g": "git::Branch",
+            "alt-g h": "git::FileHistory",
+            "alt-g d": "git::BranchDiff",
+            // movement
+            "alt-h": "pane::ActivatePreviousItem",
+            "alt-l": "pane::ActivateNextItem",
+            "alt-j": "workspace::ToggleBottomDock",
+            "alt-k": "workspace::ToggleRightDock",
+
+            // === rightalt (ctrl) ===
+            // для работы с файлами и открытым файлом
+            // усиление с capslock (alt)
+            // нельзя усилить: w
+            "ctrl-tab": "tab_switcher::Toggle",
+            "ctrl-;": "editor::Format",
+            "ctrl-space": "file_finder::Toggle",
+            "ctrl-alt-o": "workspace::Open",
+            "ctrl-s": "workspace::Save",
+            "ctrl-alt-s": "workspace::SaveAll",
+            "ctrl-f": "buffer_search::Deploy",
+            "ctrl-alt-f": [
+                "buffer_search::Deploy",
+                {
+                    "replace_enabled": true,
+                },
+            ],
+            //
+            "ctrl-j": "menu::SelectNext",
+            "ctrl-k": "menu::SelectPrevious",
+            "ctrl-alt-h": "pane::GoBack",
+            "ctrl-alt-l": "pane::GoForward",
+        },
+    },
+
+    // === ApplicationMenu ===
+    {
+        "context": "ApplicationMenu",
+        "bindings": {
+            "ctrl-h": "app_menu::ActivateMenuLeft",
+            "ctrl-l": "app_menu::ActivateMenuRight",
+        },
+    },
+
+    // === BreakpointList ===
+    {
+        "context": "BreakpointList",
+        "bindings": {
+            "ctrl-h": "debugger::PreviousBreakpointProperty",
+            "ctrl-l": "debugger::NextBreakpointProperty",
+        },
+    },
+
+    // === BufferSearchBar ===
+    {
+        "context": "BufferSearchBar",
+        "bindings": {
+            "ctrl-h": null,
+            "ctrl-l": null,
+            "ctrl-j": "search::SelectNextMatch",
+            "ctrl-k": "search::SelectPreviousMatch",
+        },
+    },
+
+    // === (BufferSearchBar && !in_replace) > Editor ===
+    // {
+    //    "context": "(BufferSearchBar && !in_replace) > Editor",
+    //    "bindings": {
+    //       "ctrl-j": "search::NextHistoryQuery",
+    //       "ctrl-k": "search::PreviousHistoryQuery"
+    //    },
+    // },
+
+    // === Editor ===
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-h": "editor::MoveLeft",
+            "ctrl-j": "editor::MoveDown",
+            "ctrl-k": "editor::MoveUp",
+            "ctrl-l": "editor::MoveRight",
+            "ctrl-alt-j": "editor::MoveToEndOfParagraph",
+            "ctrl-alt-k": "editor::MoveToStartOfParagraph",
+        },
+    },
+
+    // === Search ====
+
+    // === (Editor && edit_prediction_conflict) ===
+    {
+        "context": "(editor && edit_prediction_conflict)",
+        "bindings": {
+            "ctrl-l": "editor::AcceptEditPrediction",
+        },
+    },
+
+    // === (Editor && !edit_prediction) ===
+    {
+        "context": "(Editor && !edit_prediction)",
+        "bindings": {
+            "ctrl-q": "editor::ShowEditPrediction",
+        },
+    },
+
+    // === (Editor && mode == full) ===
+    // {
+    //    "context": "(Editor && mode == full)",
+    //    "bindings": {
+    //       "ctrl-h": null
+    //    },
+    // },
+
+    // === (Editor && (showing_code_actions || showing_completions)) ===
+    {
+        "context": "(Editor && (showing_code_actions || showing_completions))",
+        "bindings": {
+            "ctrl-j": "editor::ContextMenuNext",
+            "ctrl-k": "editor::ContextMenuPrevious",
+        },
+    },
+
+    // === ((Editor && showing_signature_help) && !showing_completions) ===
+    {
+        "context": "((Editor && showing_signature_help) && !showing_completions)",
+        "bindings": {
+            "ctrl-j": "editor::SignatureHelpNext",
+            "ctrl-k": "editor::SignatureHelpPrevious",
+        },
+    },
+
+    // === ((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu) ===
+    {
+        "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
+        "bindings": {
+            "ctrl-h": null,
+            "ctrl-j": null,
+            "ctrl-k": null,
+            "ctrl-l": null,
+        },
+    },
+
+    // === (GitPanel && ChangesList) ===
+    {
+        "context": "(GitPanel && ChangesList)",
+        "bindings": {
+            "ctrl-h": "git_panel::CollapseSelectedEntry",
+            "ctrl-j": "git_panel::NextEntry",
+            "ctrl-k": "git_panel::PreviousEntry",
+            "ctrl-l": "git_panel::ExpandSelectedEntry",
+        },
+    },
+
+    // === KeybindEditorModal > Editor ===
+    {
+        "context": "KeybindEditorModal > Editor",
+        "bindings": {
+            "ctrl-j": "menu::SelectNext",
+            "ctrl-k": "menu::SelectPrevious",
+        },
+    },
+
+    // === KeymapEditor ===
+    {
+        "context": "KeymapEditor",
+        "bindings": {
+            "ctrl-k": null,
+        },
+    },
+
+    // === MarkdownPreview ===
+    {
+        "context": "MarkdownPreview",
+        "bindings": {
+            "ctrl-j": "markdown::ScrollDown",
+            "ctrl-k": "markdown::ScrollUp",
+        },
+    },
+
+    // === menu ===
+    {
+        "context": "menu",
+        "bindings": {
+            "ctrl-h": "menu::SelectParent",
+            "ctrl-l": "menu::SelectChild",
+        },
+    },
+
+    // === (OutlinePanel && not_editing) ===
+    {
+        "context": "(OutlinePanel && not_editing)",
+        "bindings": {
+            "ctrl-h": "outline_panel::CollapseSelectedEntry",
+            "ctrl-l": "outline_panel::ExpandSelectedEntry",
+            "ctrl-d": "outline_panel::CollapseAllEntries",
+        },
+    },
+
+    // === (Picker || menu) ===
+    {
+        "context": "(Picker || menu)",
+        "bindings": {
+            "ctrl-j": "menu::SelectNext",
+            "ctrl-k": "menu::SelectPrevious",
+        },
+    },
+
+    // === Picker > Editor ===
+    {
+        "context": "Picker > Editor",
+        "bindings": {
+            "ctrl-j": "menu::SelectNext",
+            "ctrl-k": "menu::SelectPrevious",
+        },
+    },
+
+    // === ProjectPanel ===
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "ctrl-h": "project_panel::CollapseSelectedEntry",
+            "ctrl-l": "project_panel::ExpandSelectedEntry",
+        },
+    },
+
+    // === Prompt ===
+    {
+        "context": "Prompt",
+        "bindings": {
+            "ctrl-h": "menu::SelectPrevious",
+            "ctrl-l": "menu::SelectNext",
+        },
+    },
+
+    // === (RecentProjects || RecentProjects > Picker > Editor) ===
+    {
+        "context": "(RecentProjects || RecentProjects > Picker > Editor)",
+        "bindings": {
+            "ctrl-k": null,
+        },
+    },
+
+    // === RunModal ===
+    {
+        "context": "RunModal",
+        "bindings": {
+            "ctrl-tab": null,
+            "ctrl-shift-tab": null,
+        },
+    },
+
+    // === SettingsWindow > NavigationMenu ===
+    {
+        "context": "SettingsWindow > NavigationMenu",
+        "bindings": {
+            "ctrl-h": "settings_editor::CollapseNavEntry",
+            "ctrl-j": "settings_editor::FocusNextNavEntry",
+            "ctrl-k": "settings_editor::FocusPreviousNavEntry",
+            "ctrl-l": "settings_editor::ExpandNavEntry",
+        },
+    },
+
+    // === SettingsWindow ===
+    {
+        "context": "SettingsWindow",
+        "bindings": {
+            "ctrl-h": "settings_editor::ToggleFocusNav",
+        },
+    },
+
+    // === TabSwitcher ===
+    {
+        "context": "TabSwitcher",
+        "bindings": {
+            "ctrl-shift-tab": null,
+        },
+    },
+
+    // === Terminal ===
+    {
+        "context": "Terminal",
+        "bindings": {
+            "ctrl-j": ["terminal::SendKeystroke", "down"],
+            "ctrl-k": ["terminal::SendKeystroke", "up"],
+        },
+    },
+
+    // === VariableList ===
+    {
+        "context": "VariableList",
+        "bindings": {
+            "ctrl-h": "variable_list::CollapseSelectedEntry",
+            "ctrl-l": "variable_list::ExpandSelectedEntry",
+        },
+    },
+
+    // === vim_mode == literal ===
+    {
+        "context": "vim_mode == literal",
+        "bindings": {
+            "ctrl-f": null,
+        },
+    },
+
+    // === Workspace ===
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-tab": null,
+            "ctrl-shift-tab": null,
+            "ctrl-j": null,
+        },
+    },
+    {
+        "context": "(Editor && edit_prediction)",
+        "bindings": {
+            "alt-tab": null,
+        },
+    },
+    {
+        "context": "(Editor && edit_prediction_conflict)",
+        "bindings": {
+            "alt-tab": null,
+        },
+    },
+    {
+        "context": "(Editor && edit_prediction)",
+        "bindings": {
+            "ctrl-l": "editor::AcceptEditPrediction",
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "ctrl-j": "search::SelectNextMatch",
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "ctrl-k": "search::SelectPreviousMatch",
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "shift-f3": null,
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "ctrl-alt-shift-g": null,
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "f3": null,
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "ctrl-alt-g": null,
+        },
+    },
+]

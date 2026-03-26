@@ -1,0 +1,195 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "spacing": 10,
+
+    "modules-left": ["niri/workspaces", "niri/window"],
+    // "modules-left": ["hyprland/workspaces", "hyprland/window"],
+
+    "modules-center": ["custom/codeforces", "custom/lichess"],
+
+    "modules-right": [
+        "tray",
+        "custom/vpn",
+        "custom/wifi",
+        "bluetooth",
+        // "hyprland/language",
+        "niri/language",
+        "pulseaudio",
+        "battery",
+        "custom/notification",
+        "clock",
+    ],
+
+    "custom/vpn": {
+        "signal": 8,
+        "format": "◉ {}",
+        "exec": "sudo /home/glebkiva/scripts/vpn_check.bash",
+        "return-type": "json",
+        "on-click": "sudo /home/glebkiva/scripts/vpn_toggle.bash",
+        "interval": 3,
+    },
+
+    "custom/letterboxd": {
+        "interval": 3600,
+        "format": "&#xEF7E;  {}",
+        "return-type": "text",
+        "exec": "python3 $HOME/scripts/letterboxd.py",
+        "tooltip": false,
+        "signal": 15,
+    },
+
+    "custom/codeforces": {
+        "interval": 3600,
+        "format": "&#xF1CE;  {}",
+        "return-type": "text",
+        "exec": "python3 $HOME/scripts/codeforces.py",
+        "tooltip": false,
+        "signal": 15,
+    },
+
+    "custom/lichess": {
+        "interval": 3600,
+        "format": "&#xF5E1;  {}",
+        "return-type": "text",
+        "exec": "python3 $HOME/scripts/lichess.py",
+        "tooltip": false,
+        "signal": 15,
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 8,
+    },
+
+    "pulseaudio": {
+        "scroll-step": 0.5,
+        "format": "&#xF2A1; {volume}%",
+        "format-muted": "&#xF2A0;",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip": true,
+        "max-volume": 130,
+    },
+
+    "battery": {
+        "interval": 1,
+        "states": {
+            "good": 99,
+            "warning": 25,
+        },
+        "format": "&#xEAAF; {capacity}%",
+        "format-warning": "&#xEAB1; {capacity}%",
+        "format-charging": "&#xEAAD; {capacity}%",
+        "tooltip": true,
+        "tooltip-format": "{capacity}%",
+    },
+
+    "niri/workspaces": {
+        "format": "{icon} {name}:{index}",
+        "format-icons": {
+            "active": "&#xF192;",
+            "default": "&#xF111;",
+            "anchor": "&#x2693;"
+        }
+    },
+
+    // "niri/window": {
+    //     "format": "{value}",
+    //     "rewrite": {
+    //         "(.*) - Mozilla Firefox": "🌎 $1",
+    //         "(.*) - zsh": "> [$1]",
+    //     },
+    // },
+
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+        "sort-by-number": true,
+        "active-only": false,
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "🔍  $1",
+            "(.*) — Zen Browser": "🔍  $1",
+            "(.*) - Chromium": "🔍  $1",
+            "(.*) - Visual Studio Code": "▄▀▄▀▄▀▄  $1  ▀▄▀▄▀▄▀",
+            "(.*) - Obsidian(.*)": "🧠  $1",
+        },
+    },
+    "clock": {
+        "format": "{:%a  %e,  %b %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "months": "<span color='#cdd6f4'><b>{}</b></span>",
+                "days": "<span color='#cdd6f4'><b>{}</b></span>",
+                "weeks": "<span color='#cdd6f4'><b>W{}</b></span>",
+                "weekdays": "<span color='#cdd6f4'><b>{}</b></span>",
+                "today": "<span color='#f38ba8'><b>{}</b></span>",
+            },
+        },
+    },
+
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-ru": "RU",
+    },
+
+    "niri/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-ru": "RU",
+    },
+
+    "custom/wifi": {
+        "exec": "~/scripts/wifi-status.sh",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "on-click": "~/scripts/wifi-menu.sh",
+        "interval": 1,
+        "min-length": 1,
+        "max-length": 12,
+    },
+
+    "bluetooth": {
+        "format": "&#xEACC;",
+        "format-disabled": "&#xEACC;",
+        "format-connected": "&#xEAC9;",
+
+        "tooltip-format": "{num_connections} connected",
+        "tooltip-format-disabled": "Bluetooth Disabled",
+        "tooltip-format-connected": "{num_connections} connected\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumeratflexGrowe-connected-battery": "{device_alias}: {device_battery_percentage}%",
+
+        "on-click": "~/scripts/bluetooth-menu.sh",
+        "interval": 1,
+        "min-length": 1,
+        "max-length": 10,
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "rotate": 0,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "&#xEF93; ",
+            "dnd-notification": "&#xF58E; ",
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click-right": "swaync-client -d -sw",
+        "on-click": "swaync-client -t -sw",
+        "escape": true,
+    },
+}
