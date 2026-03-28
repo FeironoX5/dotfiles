@@ -181,7 +181,7 @@ layer-rule {
         noise 0.03
         saturation 1.5
     }
-    opacity 0.85
+    opacity 0.8
 }
 
 layer-rule {

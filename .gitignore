@@ -39,3 +39,4 @@ scripts/goxray_cli_args
 scripts/letterboxd*
 *.log
 .bash*
+.gitconfig

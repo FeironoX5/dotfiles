@@ -1,4 +1,4 @@
-@define-color bg-color rgba(22, 22, 22, 0.67);
+@define-color bg-color rgba(22, 22, 22, 1);
 @define-color t-active-color rgba(255, 255, 255, 0.9);
 @define-color t-hover-color rgba(255, 255, 255, 0.7);
 @define-color t-color rgba(255, 255, 255, 0.4);
@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     font-family: "SF Pro Display", Inter, "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 500;
 }
 
@@ -25,7 +25,7 @@ tooltip label {
 
 #waybar.top > box.horizontal {
     /* padding: 0 23px; */
-    padding: 3px 30px;
+    padding: 0px 30px;
 }
 
 /* Modules Left */
