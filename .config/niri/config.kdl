@@ -83,7 +83,8 @@ binds {
     Mod+Grave repeat=false { toggle-overview; }
     Mod+Escape repeat=false { spawn "hyprlock"; }
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
-    Mod+B repeat=false { spawn "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=buffer --file-forwarding org.gnome.gitlab.cheywood.Buffer"; }
+    Mod+B repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 com.toolstack.Folio"; }
+    Mod+N repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 com.toolstack.Folio"; }
     Mod+V repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
     //
     Print { screenshot; }
@@ -119,10 +120,10 @@ layout {
     preset-column-widths {
         proportion 0.4
         proportion 0.6
-        proportion 0.95
+        proportion 0.99
     }
 
-    default-column-width { proportion 0.95; }
+    default-column-width { proportion 0.99; }
 
     border {
         on
@@ -245,7 +246,7 @@ hotkey-overlay {
 
 animations {
     // macOS-like: slightly slower and springier than niri defaults
-    slowdown 1.0
+    slowdown 0.5
 
     // Workspace switch — smooth spring like Spaces
     workspace-switch {
@@ -351,7 +352,7 @@ window-rule {
     default-column-width { proportion 0.4; }
     default-window-height { fixed 400; }
     default-column-display "tabbed"
-    open-focused false
+    open-focused true
     default-floating-position x=20 y=50 relative-to="bottom-right"
 }
 

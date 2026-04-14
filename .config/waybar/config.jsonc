@@ -91,7 +91,8 @@
         "format-icons": {
             "active": "&#xF192;",
             "default": "&#xF111;",
-            "anchor": "&#x2693;"
+            "anchor": "&#x2693;",
+            "active-anchor": "&#x2693;",
         }
     },
 

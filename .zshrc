@@ -230,3 +230,4 @@ export PATH=$HOME/.local/bin:$PATH
 # opencode
 export PATH=/home/glebkiva/.opencode/bin:$PATH
 # export PATH="/home/.local/bin:$PATH"
+export PATH="$PATH:$HOME/go/bin"

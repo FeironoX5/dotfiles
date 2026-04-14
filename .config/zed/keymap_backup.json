@@ -9,7 +9,7 @@
             "alt-s": "zed::OpenSettings",
             "alt-d": "debugger::Start",
             "alt-r": "task::Spawn",
-            "alt-f": "workspace::ToggleZoom",
+            "alt-f": "workspace::ZoomIn",
             "alt-t": "workspace::NewTerminal",
             "alt-c": "editor::DiffClipboardWithSelection",
             "alt-o": "projects::OpenRecent",
@@ -120,7 +120,7 @@
 
     // === (Editor && edit_prediction_conflict) ===
     {
-        "context": "(editor && (edit_prediction && (showing_completions || in_leading_whitespace)))",
+        "context": "(editor && edit_prediction_conflict)",
         "bindings": {
             "ctrl-l": "editor::AcceptEditPrediction",
         },
@@ -349,7 +349,7 @@
         },
     },
     {
-        "context": "(Editor && (edit_prediction && (showing_completions || in_leading_whitespace)))",
+        "context": "(Editor && edit_prediction_conflict)",
         "bindings": {
             "alt-tab": null,
         },
