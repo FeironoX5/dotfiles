@@ -13,14 +13,20 @@
             "alt-t": "workspace::NewTerminal",
             "alt-c": "editor::DiffClipboardWithSelection",
             "alt-o": "projects::OpenRecent",
-            "alt-n": "tab_switcher::ToggleAll",
+            "alt-m": "multi_workspace::ToggleWorkspaceSidebar" ,
+            "alt-n": "agent::ToggleNewThreadMenu" ,
             "alt-p": "pane::TogglePinTab",
+            "alt-.": "workspace::IncreaseOpenDocksSize",
+            "alt-,": "workspace::DecreaseOpenDocksSize",
+            "alt-ctrl-.": "workspace::IncreaseActiveDockSize",
+            "alt-ctrl-,": "workspace::DecreaseActiveDockSize",
             // focus panes
             "alt s": "outline_panel::ToggleFocus",
             "alt g": "git_panel::ToggleFocus",
             "alt e": "editor::ToggleFocus",
             "alt t": "terminal_panel::ToggleFocus",
             "alt a": "agent::ToggleFocus",
+            "alt-a": "agents_sidebar::ToggleThreadSwitcher",
             "alt d": "debug_panel::ToggleFocus",
             "alt f": "project_panel::ToggleFocus",
             "alt-1": "git_panel::ToggleFocus",
@@ -30,6 +36,8 @@
             // layout
             // TODO
             // git
+            "alt-;": "git::Worktree",
+            "ctrl-alt-;": "git::Branch",
             "alt-g": "git::Branch",
             "alt-g l": "git_graph::Open",
             "alt-g h": "git::FileHistory",
@@ -51,6 +59,8 @@
             "ctrl-s": "workspace::Save",
             "ctrl-alt-s": "workspace::SaveAll",
             "ctrl-f": "buffer_search::Deploy",
+            "ctrl-b": "editor::ToggleBookmark",
+            "ctrl-alt-b": "editor::ViewBookmarks",
             "ctrl-alt-f": [
                 "buffer_search::Deploy",
                 {
@@ -260,14 +270,6 @@
         "bindings": {
             "ctrl-h": "menu::SelectPrevious",
             "ctrl-l": "menu::SelectNext",
-        },
-    },
-
-    // === (RecentProjects || RecentProjects > Picker > Editor) ===
-    {
-        "context": "(RecentProjects || RecentProjects > Picker > Editor)",
-        "bindings": {
-            "ctrl-k": null,
         },
     },
 

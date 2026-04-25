@@ -1,99 +1,98 @@
 #!/usr/bin/env bash
-# vpn_toggle.bash — Toggle goxray VPN on/off for Waybar button
-# Status is determined via process presence + tun interface, no log file needed.
+source "$(dirname "$0")/vpn_common.bash"
 
-BIN="/home/glebkiva/scripts/goxray_cli_linux_amd64"
-ARGS_FILE="/home/glebkiva/scripts/goxray_cli_args"
-TUN_IFACE="tun0"
-STATE="/run/user/$(id -u)/goxray_cli.state"
-WAYBAR_SIGNAL="8"
-CONNECT_TIMEOUT=15  # seconds to wait for tun0 before giving up
-
-# --- Helpers ---
-
-refresh_waybar() {
-  pkill -RTMIN+"$WAYBAR_SIGNAL" -x waybar 2>/dev/null || true
+# --- Lock: prevent double-invocation on rapid clicks ---
+acquire_lock() {
+  if ! mkdir "$LOCK" 2>/dev/null; then
+    echo "VPN toggle already in progress, aborting." >&2
+    exit 0
+  fi
+  trap 'rmdir "$LOCK" 2>/dev/null || true' EXIT
 }
 
-is_process_running() {
-  pgrep -f -- "^${BIN}( |$)" >/dev/null 2>&1
-}
-
-is_tun_up() {
-  ip link show "$TUN_IFACE" 2>/dev/null | grep -q "state UP\|UNKNOWN"
-}
-
-set_state() {
-  mkdir -p "$(dirname "$STATE")"
-  printf '%s' "$1" > "$STATE"
-}
-
-clear_state() {
-  rm -f "$STATE" 2>/dev/null || true
-}
-
-# Background watcher: polls until tun0 is up (or process dies / timeout),
-# then signals waybar once so it redraws with "connected" (or "disconnected").
+# --- Background watcher: clears "connecting" once tun is up or process dies ---
 wait_for_tun_and_notify() {
   local deadline=$(( $(date +%s) + CONNECT_TIMEOUT ))
-
   while (( $(date +%s) < deadline )); do
     if ! is_process_running; then
-      # Process died unexpectedly — clean up and notify
-      clear_state
-      refresh_waybar
-      return
+      clear_state; refresh_waybar; return
     fi
-
     if is_tun_up; then
-      # Interface is up — connected!
-      clear_state
-      refresh_waybar
-      return
+      clear_state; refresh_waybar; return
     fi
-
     sleep 1
   done
-
-  # Timeout reached — tun never came up; clean up
-  clear_state
-  refresh_waybar
+  clear_state; refresh_waybar
 }
 
-# --- Actions ---
+# Hard memory cap: kernel enforces this via cgroupv2 — no polling needed.
+MEMORY_MAX_BYTES=$(( 300 * 1024 * 1024 ))  # 300 MB
+
+# Write memory limit directly into goxray's cgroupv2 hierarchy.
+# Requires cgroup delegation — see cgroup-delegation.conf if this logs a warning.
+apply_cgroup_limit() {
+  local pid=$1
+  local cg
+  cg=$(awk -F: '/^0::/{print $3}' "/proc/${pid}/cgroup" 2>/dev/null)
+  [[ -z "$cg" ]] && return
+
+  local cg_dir="/sys/fs/cgroup${cg}"
+  if [[ -w "${cg_dir}/memory.max" ]]; then
+    echo "$MEMORY_MAX_BYTES" > "${cg_dir}/memory.max"
+    echo "0"                 > "${cg_dir}/memory.swap.max"
+    logger -t vpn-watchdog "cgroup memory.max=${MEMORY_MAX_BYTES} applied to pid ${pid}"
+  else
+    logger -t vpn-watchdog "cannot write cgroup memory.max for pid ${pid} — delegation not enabled"
+  fi
+}
+
+# Background monitor: restarts goxray if it dies while desired=on.
+# Does nothing if desired=off or desired=suspending (lid closed, system sleeping).
+restart_on_death() {
+  local pid=$1
+  while [[ -d "/proc/${pid}" ]]; do
+    sleep 2
+  done
+
+  local desired
+  desired=$(< "$DESIRED_STATE" 2>/dev/null) || true
+  [[ "$desired" != "on" ]] && return
+
+  logger -t vpn-watchdog "goxray pid ${pid} exited (OOM or crash), restarting"
+  sleep 1
+  start_vpn
+}
 
 start_vpn() {
   local args=""
   [[ -f "$ARGS_FILE" ]] && args=$(< "$ARGS_FILE")
 
-  # Signal waybar immediately so it shows "connecting"
+  printf 'on' > "$DESIRED_STATE"
   set_state "connecting"
   refresh_waybar
 
-  # Launch detached; discard output (no log accumulation)
+  # shellcheck disable=SC2086
   nohup "$BIN" $args >/dev/null 2>&1 &
+  local goxray_pid=$!
 
-  # Spawn background watcher — signals waybar once tun0 is up
+  apply_cgroup_limit "$goxray_pid"
+
   wait_for_tun_and_notify &
-
-  echo "VPN connecting"
+  restart_on_death "$goxray_pid" &
+  echo "VPN connecting…"
 }
 
 stop_vpn() {
+  printf 'off' > "$DESIRED_STATE"
   pkill -f -- "^${BIN}( |$)" 2>/dev/null || true
   clear_state
   refresh_waybar
   echo "VPN disconnected"
 }
 
-# --- Main ---
-
 main() {
-  if is_process_running; then
-    stop_vpn
-  else
-    start_vpn
-  fi
+  acquire_lock
+  if is_process_running; then stop_vpn; else start_vpn; fi
 }
 
 main "$@"

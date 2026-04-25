@@ -26,9 +26,9 @@
     "custom/vpn": {
         "signal": 8,
         "format": "◉ {}",
-        "exec": "sudo /home/glebkiva/scripts/vpn_check.bash",
+        "exec": "/home/glebkiva/scripts/vpn_check.bash",
         "return-type": "json",
-        "on-click": "sudo /home/glebkiva/scripts/vpn_toggle.bash",
+        "on-click": "/home/glebkiva/scripts/vpn_toggle.bash",
         "interval": 3,
     },
 

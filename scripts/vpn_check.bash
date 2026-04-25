@@ -1,31 +1,13 @@
 #!/usr/bin/env bash
-# vpn_check.bash — Waybar status script for goxray VPN
-# Determines status via: process presence + tun interface state
-# No log file dependency.
-
-BIN="/home/glebkiva/scripts/goxray_cli_linux_amd64"
-TUN_IFACE="tun0"
-STATE="/run/user/$(id -u)/goxray_cli.state"
-
-# --- Checks ---
-
-is_process_running() {
-  pgrep -f -- "^${BIN}( |$)" >/dev/null 2>&1
-}
-
-is_tun_up() {
-  ip link show "$TUN_IFACE" 2>/dev/null | grep -q "state UP\|UNKNOWN"
-}
+# Waybar status provider. Called on interval + RTMIN+8 signal.
+source "$(dirname "$0")/vpn_common.bash"
 
 is_connecting() {
   [[ -f "$STATE" ]] && [[ "$(< "$STATE")" == "connecting" ]]
 }
 
-# --- Main logic ---
-
-proc=false
-tun=false
-
+desired=$(< "$DESIRED_STATE" 2>/dev/null) || true
+proc=false; tun=false
 is_process_running && proc=true
 is_tun_up         && tun=true
 
@@ -33,22 +15,22 @@ if $proc && $tun; then
   state="connected"
   text="On"
   tooltip="VPN connected (${TUN_IFACE} up)"
-
 elif $proc && ! $tun; then
-  # Process is alive but interface not yet up — still connecting
   state="loading"
-  text="..."
-  tooltip="VPN connecting..."
-
+  text="…"
+  tooltip="VPN connecting…"
+elif [[ "$desired" == "suspending" ]]; then
+  # System went to sleep with VPN on — show as off until lid-open restores it
+  state="disconnected"
+  text="Off"
+  tooltip="VPN suspended (lid closed)"
 elif ! $proc && is_connecting; then
-  # Race window: toggle just fired, process not yet visible
+  # Race window: toggle fired but process not yet visible
   state="loading"
-  text="..."
-  tooltip="VPN starting..."
-
+  text="…"
+  tooltip="VPN starting…"
 else
-  # Clean up stale state file if process is gone
-  rm -f "$STATE" 2>/dev/null || true
+  clear_state
   state="disconnected"
   text="Off"
   tooltip="VPN disconnected"

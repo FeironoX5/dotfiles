@@ -125,5 +125,6 @@ export PATH=/home/glebkiva/.opencode/bin:$PATH
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Devtools/flutter/bin"
 export PATH="/home/glebkiva/fvm/bin:$PATH"
+export PATH="$HOME/.local/kitty.app/bin:$PATH"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
