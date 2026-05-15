@@ -42,7 +42,7 @@ output "eDP-1" {
 
 workspace "anchor" {
     layout {
-        center-focused-column "on-overflow"
+        // center-focused-column "on-overflow"
         // center-focused-column "never"
     }
 }
@@ -52,14 +52,14 @@ cursor {
     xcursor-size 23
 }
 
-switch-events {
-    lid-close {
-        spawn "bash" "-c" "/home/glebkiva/scripts/vpn_suspend.bash"
-    }
-    lid-open {
-        spawn "bash" "-c" "/home/glebkiva/scripts/vpn_restart.bash"
-    }
-}
+// switch-events {
+//     lid-close {
+//         spawn "bash" "-c" "/home/glebkiva/scripts/lid_moan_event.bash close"
+//     }
+//     lid-open {
+//         spawn "bash" "-c" "/home/glebkiva/scripts/lid_moan_event.bash open"
+//     }
+// }
 
 binds {
     F12 { switch-layout "next"; }
@@ -85,6 +85,8 @@ binds {
     Mod+4 repeat=false { focus-workspace 6; }
     //
     Mod+Q repeat=false { spawn "~/.local/kitty.app/bin/kitty"; }
+    Mod+E repeat=false { spawn "/home/glebkiva/Applications/helium.AppImage"; }
+    Mod+D repeat=false { spawn-sh "flatpak run io.github.zhrexl.thisweekinmylife"; }
     //
     Mod+W repeat=false { close-window; }
     Mod+F repeat=false { switch-preset-column-width; }
@@ -95,7 +97,7 @@ binds {
     Mod+Grave repeat=false { toggle-overview; }
     Mod+Escape repeat=false { spawn "hyprlock"; }
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
-    Mod+B repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 com.toolstack.Folio"; }
+    Mod+B repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 --command=buffer --file-forwarding org.gnome.gitlab.cheywood.Buffer"; }
     Mod+N repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 com.toolstack.Folio"; }
     Mod+V repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
     //
@@ -132,10 +134,10 @@ layout {
     preset-column-widths {
         proportion 0.4
         proportion 0.6
-        proportion 0.99
+        proportion 0.99999
     }
 
-    default-column-width { proportion 0.99; }
+    default-column-width { proportion 0.99999; }
 
     border {
         on
@@ -160,10 +162,10 @@ layout {
     }
 
     struts {
-        left 0
-        right 0
-        top 0
-        bottom 35
+        left 3
+        right 3
+        top 1
+        bottom 37
     }
 
     tab-indicator {
@@ -216,18 +218,6 @@ layer-rule {
         noise 0.03
         saturation 1.5
     }
-}
-
-window-rule {
-    open-fullscreen false
-    open-maximized false
-    clip-to-geometry true
-    geometry-corner-radius 7
-    background-effect {
-        blur true
-        xray true
-    }
-    opacity 0.9
 }
 
 overview {
@@ -361,13 +351,25 @@ animations {
 }
 
 window-rule {
+    open-fullscreen false
+    open-maximized false
+    clip-to-geometry true
+    geometry-corner-radius 7
+    background-effect {
+        blur true
+        xray true
+    }
+    opacity 0.9
+}
+
+window-rule {
     match app-id="kitty"
     open-floating true
     default-column-width { proportion 0.4; }
     default-window-height { fixed 400; }
     default-column-display "tabbed"
     open-focused true
-    default-floating-position x=20 y=50 relative-to="bottom-right"
+    default-floating-position x=15 y=50 relative-to="bottom-right"
 }
 
 window-rule {
@@ -375,7 +377,26 @@ window-rule {
     open-floating true
     default-column-width { fixed 300; }
     default-window-height { fixed 180; }
-    default-floating-position x=20 y=20 relative-to="top-right"
+    default-floating-position x=15 y=20 relative-to="top-right"
+}
+window-rule {
+    match app-id="google-chrome"
+    match title=r#"^.* • .*"#
+    draw-border-with-background false
+
+    border {
+        off
+    }
+    default-floating-position x=15 y=50 relative-to="top-right"
+    opacity 0.7
+    open-floating true
+    default-column-width { fixed 240; }
+    default-window-height { fixed 335; }
+
+    geometry-corner-radius 10
+    shadow {
+        off
+    }
 }
 
 window-rule {
@@ -383,8 +404,16 @@ window-rule {
     default-column-width { proportion 0.4; }
 }
 window-rule {
+    match app-id="obsidian"
+    default-column-width { proportion 0.6; }
+}
+window-rule {
     match app-id="org.telegram.desktop"
     default-column-width { proportion 0.6; }
+}
+window-rule {
+    match app-id="org.gnome.gitlab.cheywood.Buffer"
+    default-column-width { proportion 0.4; }
 }
 
 window-rule {
@@ -400,7 +429,7 @@ window-rule {
     default-floating-position x=0 y=400 relative-to="top"
 }
 
-prefer-no-csd
+prefer-no-csd true
 
 debug {
 	honor-xdg-activation-with-invalid-serial

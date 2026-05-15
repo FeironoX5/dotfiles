@@ -61,7 +61,7 @@ if command -v carapace &>/dev/null; then
 fi
 
 # ── 7. zoxide ──────────────────────────────────────────────────────────────────
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 
 # ── 8. Навигация ───────────────────────────────────────────────────────────────
 setopt AUTO_CD
@@ -76,7 +76,7 @@ flatdelete() {
   fi
 }
 gitget() { git clone "https://github.com/$1.git" }
-ghprs() {
+fj:ghprs() {
   local author="${1:-$(gh api user --jq .login)}"
   gh pr list --author "$author" --json number,title,headRefName,baseRefName,commits \
     | jq -r '.[] |
@@ -85,9 +85,18 @@ ghprs() {
         "  latest: \(.commits[-1].messageHeadline)",
         ""'
 }
-todos() {
+fj:todos() {
   leasot -S --reporter json $(git ls-files) "$@" 2>/dev/null | \
   jq -r '.[] | "\(.tag | if . == "TODO" then "\u001b[33mTODO\u001b[0m" else . end): \(.text) \u001b[33m\(.file):\(.line)\u001b[0m"'
+}
+fj:uml() {
+  local mmd=$(mktemp /tmp/uml_XXXXXX.mmd)
+  auto-uml --source-code . --no-mermaid -d "$mmd"                      || return
+  perl -i -pe 's/\b[a-z][a-z0-9_]*_([A-Z][A-Za-z0-9]+)\b/$1/g' "$mmd"
+  local encoded=$(base64 -w0 < "$mmd")
+  mmdc -i "$mmd" -o uml.svg -q                               || return
+  rm -f "$mmd"
+  xdg-open uml.svg
 }
 
 # ── 10. Алиасы ────────────────────────────────────────────────────────────────
@@ -126,5 +135,6 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Devtools/flutter/bin"
 export PATH="/home/glebkiva/fvm/bin:$PATH"
 export PATH="$HOME/.local/kitty.app/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
