@@ -1,0 +1,14 @@
+{
+  "JSDoc Function": {
+    "prefix": "doc",
+    "body": [
+      "/**",
+      " * ${1:Description of the function.}",
+      " *",
+      " * @param {${2:type}} ${3:paramName} - ${4:Parameter description.}",
+      " * @returns {${5:type}} ${6:Return value description.}",
+      " */"
+    ],
+    "description": "Generate a standard JSDoc block for a function"
+  }
+}

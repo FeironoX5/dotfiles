@@ -100,6 +100,12 @@ fj:uml() {
 }
 
 # ── 10. Алиасы ────────────────────────────────────────────────────────────────
+alias tp='topydo'
+alias tpc='topydo columns'
+alias tpa='topydo add'
+alias tpls='topydo ls -F "[%C>%D%X] %S (%u) %k"'
+
+
 alias cl='clear'
 alias ll='ls -lah'
 alias la='ls -A'
@@ -138,3 +144,18 @@ export PATH="$HOME/.local/kitty.app/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# lean-ctx shell hook — begin
+if [ -f "/home/glebkiva/.config/lean-ctx/shell-hook.zsh" ]; then
+. "/home/glebkiva/.config/lean-ctx/shell-hook.zsh"
+fi
+# lean-ctx shell hook — end
+
+# >>> lean-ctx agent aliases >>>
+alias claude='LEAN_CTX_AGENT=1 BASH_ENV="$HOME/.bashenv" claude'
+alias codex='LEAN_CTX_AGENT=1 BASH_ENV="$HOME/.bashenv" codex'
+alias gemini='LEAN_CTX_AGENT=1 BASH_ENV="$HOME/.bashenv" gemini'
+# <<< lean-ctx agent aliases <<<

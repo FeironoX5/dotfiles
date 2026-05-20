@@ -66,7 +66,7 @@ binds {
     XF86MonBrightnessUp { spawn-sh "brightnessctl set +10%"; }
     XF86MonBrightnessDown { spawn-sh "brightnessctl set 10%-"; }
     Mod+0 { spawn-sh "/home/glebkiva/.local/bin/toggle-gamma"; }
-    //
+    //SS(}]}}}
     Mod+H cooldown-ms=70 { focus-window-up-or-column-left; }
     Mod+J cooldown-ms=70 { focus-workspace-down; }
     Mod+K cooldown-ms=70 { focus-workspace-up; }
@@ -84,7 +84,7 @@ binds {
     Mod+3 repeat=false { focus-workspace 5; }
     Mod+4 repeat=false { focus-workspace 6; }
     //
-    Mod+Q repeat=false { spawn "~/.local/kitty.app/bin/kitty"; }
+    Mod+Q repeat=false { spawn "/usr/bin/ghostty"; }
     Mod+E repeat=false { spawn "/home/glebkiva/Applications/helium.AppImage"; }
     Mod+D repeat=false { spawn-sh "flatpak run io.github.zhrexl.thisweekinmylife"; }
     //
@@ -99,7 +99,7 @@ binds {
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
     Mod+B repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 --command=buffer --file-forwarding org.gnome.gitlab.cheywood.Buffer"; }
     Mod+N repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 com.toolstack.Folio"; }
-    Mod+V repeat=false { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
+    Mod+V repeat=false { spawn-sh "vicinae vicinae://launch/clipboard/history"; }
     //
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
@@ -363,7 +363,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="kitty"
+    match app-id="ghostty"
     open-floating true
     default-column-width { proportion 0.4; }
     default-window-height { fixed 400; }
@@ -401,6 +401,10 @@ window-rule {
 
 window-rule {
     match app-id="Todoist"
+    default-column-width { proportion 0.4; }
+}
+window-rule {
+    match app-id="io.github.zhrexl.thisweekinmylife"
     default-column-width { proportion 0.4; }
 }
 window-rule {

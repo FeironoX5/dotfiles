@@ -1,5 +1,5 @@
 
-font-family = Iosevka Term
+font-family = Ioskeley Mono
 font-size = 14
 
 font-feature = -calt
@@ -26,8 +26,7 @@ shell-integration-features = cursor,sudo,title
 
 scrollback-limit = 10000
 
-mouse-scroll-multiplier = 3
-
+mouse-scroll-multiplier = 0.3
 
 macos-option-as-alt = left
 

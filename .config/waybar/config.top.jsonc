@@ -1,13 +1,12 @@
 {
     "layer": "top",
-    "position": "left",        // changed: top → left
-    "margin-left": 0,
+    "position": "top",
     "margin-top": 0,
     "margin-bottom": 0,
-    "spacing": 6,
+    "spacing": 10,
 
-    // In vertical mode: modules-left = top, modules-center = middle, modules-right = bottom
     "modules-left": ["niri/workspaces", "niri/window"],
+    // "modules-left": ["hyprland/workspaces", "hyprland/window"],
 
     "modules-center": ["custom/codeforces", "custom/lichess"],
 
@@ -16,6 +15,7 @@
         "custom/vpn",
         "custom/wifi",
         "bluetooth",
+        // "hyprland/language",
         "niri/language",
         "pulseaudio",
         "battery",
@@ -30,42 +30,38 @@
         "return-type": "json",
         "on-click": "/home/glebkiva/scripts/vpn_toggle.bash",
         "interval": 3,
-        "rotate": 270,          // rotated for vertical bar
     },
 
     "custom/letterboxd": {
         "interval": 3600,
-        "format": "&#xEF7E; {}",
+        "format": "&#xEF7E;  {}",
         "return-type": "text",
         "exec": "python3 $HOME/scripts/letterboxd.py",
         "tooltip": false,
         "signal": 15,
-        "rotate": 270,
     },
 
     "custom/codeforces": {
         "interval": 3600,
-        "format": "&#xF1CE; {}",
+        "format": "&#xF1CE;  {}",
         "return-type": "text",
         "exec": "python3 $HOME/scripts/codeforces.py",
         "tooltip": false,
         "signal": 15,
-        "rotate": 270,          // rotated for vertical bar
     },
 
     "custom/lichess": {
         "interval": 3600,
-        "format": "&#xF5E1; {}",
+        "format": "&#xF5E1;  {}",
         "return-type": "text",
         "exec": "python3 $HOME/scripts/lichess.py",
         "tooltip": false,
         "signal": 15,
-        "rotate": 270,          // rotated for vertical bar
     },
 
     "tray": {
         "icon-size": 14,
-        "spacing": 6,
+        "spacing": 8,
     },
 
     "pulseaudio": {
@@ -75,7 +71,6 @@
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "tooltip": true,
         "max-volume": 160,
-        "rotate": 270,          // rotated for vertical bar
     },
 
     "battery": {
@@ -89,24 +84,25 @@
         "format-charging": "&#xEAAD; {capacity}%",
         "tooltip": true,
         "tooltip-format": "{capacity}%",
-        "rotate": 270,          // rotated for vertical bar
     },
 
     "niri/workspaces": {
-        "format": "{icon}",     // icon-only keeps buttons compact on a narrow bar
+        "format": "{icon} {name}:{index}",
         "format-icons": {
             "active": "&#xF192;",
             "default": "&#xF111;",
             "anchor": "&#x2693;",
-            "anchor-active": "&#x2693;",
+            "active-anchor": "&#x2693;",
         }
     },
 
-    "niri/window": {
-        "format": "{title}",
-        "rotate": 270,          // title runs vertically along the bar
-        "max-length": 30,
-    },
+    // "niri/window": {
+    //     "format": "{value}",
+    //     "rewrite": {
+    //         "(.*) - Mozilla Firefox": "🌎 $1",
+    //         "(.*) - zsh": "> [$1]",
+    //     },
+    // },
 
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -119,30 +115,25 @@
     "hyprland/window": {
         "format": "{title}",
         "separate-outputs": true,
-        "rotate": 270,
         "rewrite": {
-            "(.*) — Mozilla Firefox": "🔍 $1",
-            "(.*) — Zen Browser": "🔍 $1",
-            "(.*) - Chromium": "🔍 $1",
-            "(.*) - Visual Studio Code": "▄▀ $1 ▀▄",
-            "(.*) - Obsidian(.*)": "🧠 $1",
+            "(.*) — Mozilla Firefox": "🔍  $1",
+            "(.*) — Zen Browser": "🔍  $1",
+            "(.*) - Chromium": "🔍  $1",
+            "(.*) - Visual Studio Code": "▄▀▄▀▄▀▄  $1  ▀▄▀▄▀▄▀",
+            "(.*) - Obsidian(.*)": "🧠  $1",
         },
     },
-
     "clock": {
-        // Shortened format — long dates look bad rotated; use tooltip for full date
-        "format": "{:%H:%M}",
-        "format-alt": "{:%a %e %b}",
+        "format": "{:%a  %e,  %b %H:%M}",
         "tooltip-format": "<tt>{calendar}</tt>",
-        "rotate": 270,          // time reads upward along the left edge
         "calendar": {
             "mode": "month",
             "format": {
-                "months":   "<span color='#cdd6f4'><b>{}</b></span>",
-                "days":     "<span color='#cdd6f4'><b>{}</b></span>",
-                "weeks":    "<span color='#cdd6f4'><b>W{}</b></span>",
+                "months": "<span color='#cdd6f4'><b>{}</b></span>",
+                "days": "<span color='#cdd6f4'><b>{}</b></span>",
+                "weeks": "<span color='#cdd6f4'><b>W{}</b></span>",
                 "weekdays": "<span color='#cdd6f4'><b>{}</b></span>",
-                "today":    "<span color='#f38ba8'><b>{}</b></span>",
+                "today": "<span color='#f38ba8'><b>{}</b></span>",
             },
         },
     },
@@ -157,7 +148,6 @@
         "format": "{}",
         "format-en": "EN",
         "format-ru": "RU",
-        "rotate": 270,
     },
 
     "custom/wifi": {
@@ -167,20 +157,25 @@
         "tooltip": true,
         "on-click": "~/scripts/wifi-menu.sh",
         "interval": 1,
-        "rotate": 270,
+        "min-length": 1,
+        "max-length": 12,
     },
 
     "bluetooth": {
         "format": "&#xEACC;",
         "format-disabled": "&#xEACC;",
         "format-connected": "&#xEAC9;",
+
         "tooltip-format": "{num_connections} connected",
         "tooltip-format-disabled": "Bluetooth Disabled",
         "tooltip-format-connected": "{num_connections} connected\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%",
+        "tooltip-format-enumeratflexGrowe-connected-battery": "{device_alias}: {device_battery_percentage}%",
+
         "on-click": "~/scripts/bluetooth-menu.sh",
         "interval": 1,
+        "min-length": 1,
+        "max-length": 10,
     },
 
     "custom/notification": {

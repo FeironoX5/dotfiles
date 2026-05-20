@@ -17,6 +17,7 @@
    "font": {
       "rendering": "qt",
       "normal": {
+         "family": "Lato",
          "size": 11.5
       }
    },
@@ -92,6 +93,7 @@
          }
       },
       "@mattisssa/store.raycast.spotify-player": {
+         "enabled": false,
          "entrypoints": {
             "nowPlaying": {
                "alias": "~sn"
