@@ -6,7 +6,6 @@
       // для работы с проектом
       "alt-space": "command_palette::Toggle",
       "alt-w": "pane::CloseActiveItem",
-      "alt-s": "zed::OpenSettings",
       "alt-d": "debugger::Start",
       "alt-r": "task::Spawn",
       "alt-f": "workspace::ToggleZoom",
@@ -45,6 +44,7 @@
       // movement
       "alt-h": "pane::ActivatePreviousItem",
       "alt-l": "pane::ActivateNextItem",
+      "alt-s": "workspace::ActivateNextPane",
       "alt-j": "workspace::ToggleBottomDock",
       "alt-k": "workspace::ToggleRightDock",
 
@@ -70,6 +70,7 @@
       //
       "ctrl-j": "menu::SelectNext",
       "ctrl-k": "menu::SelectPrevious",
+      "ctrl-`": ["workspace::MoveItemToPane", { "destination": 0, "focus": true, "clone": false }]
     },
   },
 
@@ -125,6 +126,15 @@
       "ctrl-alt-k": "editor::MoveToStartOfParagraph",
       "ctrl-alt-h": "editor::MoveToPreviousWordStart",
       "ctrl-alt-l": "editor::MoveToNextWordEnd",
+    },
+  },
+  {
+    "context": "MarkdownPreview",
+    "bindings": {
+      "ctrl-j": "markdown::ScrollDown",
+      "ctrl-k": "markdown::ScrollUp",
+      "ctrl-alt-j": "markdown::ScrollDownByItem",
+      "ctrl-alt-k": "markdown::ScrollUpByItem",
     },
   },
 
@@ -406,4 +416,23 @@
       "ctrl-alt-h": "editor::DeleteToPreviousSubwordStart",
     },
   },
+  {
+    "context": "Editor && extension == md",
+    "bindings": {
+      "ctrl-0": ["workspace::MoveItemToPaneInDirection", {"direction": "left"}],
+      "ctrl-p": ["action::Sequence", ["markdown::OpenPreview", "pane::ActivatePreviousItem", "workspace::MoveItemToPaneInDirection"]]
+    }
+  },
+  {
+    "context": "MarkdownPreview",
+    "bindings": {
+      "ctrl-p": ["workspace::SendKeystrokes", "alt-w alt-s ctrl-`"]
+    }
+  },
+  {
+    "context": "Editor && extension == md",
+    "unbind": {
+      "ctrl-shift-v": "markdown::OpenPreview"
+    }
+  }
 ]
