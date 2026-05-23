@@ -6,9 +6,10 @@
       // для работы с проектом
       "alt-space": "command_palette::Toggle",
       "alt-w": "pane::CloseActiveItem",
-      "alt-d": "debugger::Start",
       "alt-r": "task::Spawn",
       "alt-f": "workspace::ToggleZoom",
+      "jfklds": "workspace::ToggleAllDocks",
+      "alt-z": ["action::Sequence", ["workspace::ToggleCenteredLayout", "workspace::ToggleAllDocks"]],
       "alt-t": "workspace::NewTerminal",
       "alt-c": "editor::DiffClipboardWithSelection",
       "alt-o": "projects::OpenRecent",
@@ -25,7 +26,6 @@
       "alt e": "editor::ToggleFocus",
       "alt t": "terminal_panel::ToggleFocus",
       "alt a": "agent::ToggleFocus",
-      "alt-a": "agents_sidebar::ToggleThreadSwitcher",
       "alt d": "debug_panel::ToggleFocus",
       "alt f": "project_panel::ToggleFocus",
       "alt-1": "git_panel::ToggleFocus",
@@ -44,7 +44,9 @@
       // movement
       "alt-h": "pane::ActivatePreviousItem",
       "alt-l": "pane::ActivateNextItem",
-      "alt-s": "workspace::ActivateNextPane",
+      "alt-s": "workspace::NewFileSplitVertical",
+      "alt-a": "workspace::ActivatePaneLeft",
+      "alt-d": "workspace::ActivatePaneRight",
       "alt-j": "workspace::ToggleBottomDock",
       "alt-k": "workspace::ToggleRightDock",
 
@@ -420,13 +422,14 @@
     "context": "Editor && extension == md",
     "bindings": {
       "ctrl-0": ["workspace::MoveItemToPaneInDirection", {"direction": "left"}],
-      "ctrl-p": ["action::Sequence", ["markdown::OpenPreview", "pane::ActivatePreviousItem", "workspace::MoveItemToPaneInDirection"]]
+      "ctrl-p": ["action::Sequence", ["markdown::OpenPreview", "pane::ActivatePreviousItem", "workspace::MoveItemToPaneInDirection"]],
+      "ctrl-d": ["workspace::SendKeystrokes", "( d o n e )"]
     }
   },
   {
     "context": "MarkdownPreview",
     "bindings": {
-      "ctrl-p": ["workspace::SendKeystrokes", "alt-w alt-s ctrl-`"]
+      "ctrl-p": ["workspace::SendKeystrokes", "alt-w alt-d ctrl-`"]
     }
   },
   {

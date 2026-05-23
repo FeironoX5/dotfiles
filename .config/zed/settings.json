@@ -44,18 +44,18 @@
   // Layout
   "resize_all_panels_in_dock": ["left", "bottom", "right"],
   "centered_layout": {
-    "right_padding": 0.0,
-    "left_padding": 0.0,
+    "right_padding": 0.25,
+    "left_padding": 0.25,
   },
   "current_line_highlight": "all",
   "colorize_brackets": true,
   "show_whitespaces": "all",
   "relative_line_numbers": "disabled",
-  "soft_wrap": "none",
-  "wrap_guides": [65, 70, 80, 90, 100],
+  "soft_wrap": "bounded",
+  "wrap_guides": [65, 70, 85],
   "show_wrap_guides": true,
   "active_pane_modifiers": {
-    "inactive_opacity": 0.7,
+    "inactive_opacity": 0.85,
   },
 
   // Minimap
@@ -69,12 +69,13 @@
 
   // Scrollbar
   "scrollbar": {
-    "show": "never",
+    "show": "always",
     "axes": {
       "vertical": true,
       "horizontal": false,
     },
     "cursors": false,
+    "git_diff": true,
   },
 
   // Indent guides
@@ -83,7 +84,6 @@
     "line_width": 2,
     "enabled": true,
     "coloring": "indent_aware",
-    "background_coloring": "disabled",
   },
 
   // Cursor
@@ -107,6 +107,7 @@
   "use_smartcase_search": true,
   "restore_on_startup": "last_workspace",
   "file_scan_exclusions": [],
+  "search_wrap": true,
 
   // Completions
   "completions": {
