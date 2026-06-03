@@ -437,5 +437,15 @@
     "unbind": {
       "ctrl-shift-v": "markdown::OpenPreview"
     }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-u": "editor::UndoSelection"
+    },
+    "bindings": {
+      "ctrl-u": "editor::ToggleFold",
+      "ctrl-alt-u": "editor::ToggleFoldAll"
+    }
   }
 ]

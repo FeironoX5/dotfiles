@@ -9,7 +9,7 @@
   },
   "completion_menu_item_kind": "symbol",
   "code_lens": "on",
-  "diff_view_style": "unified",
+  "diff_view_style": "split",
   "ssh_connections": [
     {
       "host": "helios.cs.ifmo.ru",

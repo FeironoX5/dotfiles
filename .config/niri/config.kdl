@@ -77,7 +77,6 @@ binds {
     Mod+Shift+L repeat=false { consume-or-expel-window-right; }
     //
     Alt+Tab repeat=false { spawn-sh "~/scripts/niri_switch.sh"; }
-    Mod+M repeat=false { spawn-sh "~/scripts/niri_switch.sh"; }
     Mod+Shift+M repeat=false { move-window-to-workspace "anchor"; }
     Mod+1 repeat=false { focus-workspace 3; }
     Mod+2 repeat=false { focus-workspace 4; }
@@ -85,7 +84,7 @@ binds {
     Mod+4 repeat=false { focus-workspace 6; }
     //
     Mod+Q repeat=false { spawn "/usr/bin/ghostty"; }
-    Mod+E repeat=false { spawn "/home/glebkiva/Applications/helium.AppImage"; }
+    Mod+E repeat=false { spawn "helium"; }
     Mod+D repeat=false { spawn-sh "flatpak run io.github.zhrexl.thisweekinmylife"; }
     //
     Mod+W repeat=false { close-window; }
@@ -97,8 +96,9 @@ binds {
     Mod+Grave repeat=false { toggle-overview; }
     Mod+Escape repeat=false { spawn "hyprlock"; }
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
+    Mod+N repeat=false { spawn-sh "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/whisp --file-forwarding io.github.tanaybhomia.Whisp"; }
     Mod+B repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 --command=buffer --file-forwarding org.gnome.gitlab.cheywood.Buffer"; }
-    Mod+N repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 com.toolstack.Folio"; }
+    Mod+M repeat=false { spawn-sh "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=obsidian.sh --file-forwarding md.obsidian.Obsidian 'obsidian://open?vault=Personal'"; }
     Mod+V repeat=false { spawn-sh "vicinae vicinae://launch/clipboard/history"; }
     //
     Print { screenshot; }
@@ -361,6 +361,10 @@ window-rule {
     }
     opacity 0.9
 }
+window-rule {
+    match app-id="obsidian"
+    opacity 1.0
+}
 
 window-rule {
     match app-id="ghostty"
@@ -379,25 +383,25 @@ window-rule {
     default-window-height { fixed 180; }
     default-floating-position x=15 y=20 relative-to="top-right"
 }
-window-rule {
-    match app-id="google-chrome"
-    match title=r#"^.* • .*"#
-    draw-border-with-background false
+// window-rule {
+//     match app-id="google-chrome"
+//     match title=r#"^.* • .*"#
+//     draw-border-with-background false
 
-    border {
-        off
-    }
-    default-floating-position x=15 y=50 relative-to="top-right"
-    opacity 0.7
-    open-floating true
-    default-column-width { fixed 240; }
-    default-window-height { fixed 335; }
+//     border {
+//         off
+//     }
+//     default-floating-position x=15 y=50 relative-to="top-right"
+//     opacity 0.7
+//     open-floating true
+//     default-column-width { fixed 240; }
+//     default-window-height { fixed 335; }
 
-    geometry-corner-radius 10
-    shadow {
-        off
-    }
-}
+//     geometry-corner-radius 10
+//     shadow {
+//         off
+//     }
+// }
 
 window-rule {
     match app-id="Todoist"
@@ -426,11 +430,14 @@ window-rule {
 }
 
 window-rule {
-    match app-id="albert"
-    geometry-corner-radius 13
+    match app-id="io.github.tanaybhomia.Whisp"
+    geometry-corner-radius 15
     open-focused true
     open-floating true
-    default-floating-position x=0 y=400 relative-to="top"
+    default-floating-position x=0 y=250 relative-to="top"
+    default-window-height { proportion 0.5; }
+    default-column-width { proportion 0.6; }
+    opacity 0.99999
 }
 
 prefer-no-csd true

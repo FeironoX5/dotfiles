@@ -9,7 +9,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
-  ssh-agent
   sudo
   aliases
   common-aliases
@@ -25,9 +24,6 @@ plugins=(
   fzf-tab
 )
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
-zstyle :omz:plugins:ssh-agent lifetime 4h
-zstyle :omz:plugins:ssh-agent lazy yes
 zstyle ':omz:plugins:aliases' verbose yes
 
 source $ZSH/oh-my-zsh.sh
