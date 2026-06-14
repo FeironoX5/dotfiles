@@ -3,13 +3,13 @@
   // =========================================================
   // APPEARANCE
   // =========================================================
-  "cli_default_open_behavior": "existing_window",
+  "cli_default_open_behavior": "new_window",
   "tasks": {
     "prefer_lsp": false,
   },
   "completion_menu_item_kind": "symbol",
-  "code_lens": "on",
-  "diff_view_style": "split",
+  "code_lens": "menu",
+  "diff_view_style": "unified",
   "ssh_connections": [
     {
       "host": "helios.cs.ifmo.ru",
@@ -32,13 +32,13 @@
   },
 
   // Fonts
-  "ui_font_family": "Lato",
-  "ui_font_size": 14,
+  "ui_font_family": ".ZedSans",
+  "ui_font_size": 12.5,
   "ui_font_weight": 450.0,
   "buffer_font_family": "Ioskeley Mono",
-  "buffer_font_size": 13,
+  "buffer_font_size": 12,
   "buffer_line_height": "standard",
-  "markdown_preview_font_family": "Lato",
+  "markdown_preview_font_family": "Noto Serif",
   "markdown_preview_theme": "Catppuccin Mocha - No Italics",
 
   // Layout
@@ -467,22 +467,4 @@
       "ignored": "#6E768155",
     },
   },
-
-  // etc
-  // "debugger": {
-  //     "stepping_granularity": "line",
-  //     "log_dap_communications": true,
-  //     "format_dap_log_messages": true,
-  // },
-  // "dap": {
-  //   "JavaScript": {
-  //     "binary": "node",
-  //     "args": ["/home/glebkiva/scripts/nodestuff/.deno-dap-bridge.js"]
-  //   }
-  // }
-  // "dap": {
-  // "JavaScript": {
-  //
-  // }
-  // }
 }
