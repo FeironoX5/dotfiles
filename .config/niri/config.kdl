@@ -100,6 +100,7 @@ binds {
     Mod+B repeat=false { spawn-sh "flatpak run --branch=stable --arch=x86_64 --command=buffer --file-forwarding org.gnome.gitlab.cheywood.Buffer"; }
     Mod+M repeat=false { spawn-sh "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=obsidian.sh --file-forwarding md.obsidian.Obsidian 'obsidian://open?vault=Personal'"; }
     Mod+V repeat=false { spawn-sh "vicinae vicinae://launch/clipboard/history"; }
+    Mod+T repeat=false { spawn-sh "~/scripts/focus_toggle.sh"; }
     //
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
@@ -374,6 +375,16 @@ window-rule {
     default-column-display "tabbed"
     open-focused true
     default-floating-position x=15 y=50 relative-to="bottom-right"
+}
+window-rule {
+    match app-id="io.github.focustimerhq.FocusTimer"
+    open-floating true
+    default-column-width { proportion 0.4; }
+    default-window-height { fixed 400; }
+    open-focused false
+    default-floating-position x=15 y=15 relative-to="top-right"
+    opacity 0.99999999999
+    geometry-corner-radius 16
 }
 
 window-rule {

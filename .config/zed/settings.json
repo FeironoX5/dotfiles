@@ -252,6 +252,7 @@
   "disable_ai": false,
   "agent_ui_font_size": 13.0,
   "agent": {
+    "terminal_init_command": "kimi",
     "tool_permissions": {
       "tools": {
         "mcp:chrome-devtools-mcp-zed:take_snapshot": {

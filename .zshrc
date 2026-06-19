@@ -94,13 +94,19 @@ fj:uml() {
   rm -f "$mmd"
   xdg-open uml.svg
 }
+function caj() {
+  git ls-files | grep -i "/$1\." | while IFS= read -r file; do
+    echo "== $file:\n\`\`\`"
+    cat "$file"
+    echo "\`\`\`"
+  done
+}
 
 # ── 10. Алиасы ────────────────────────────────────────────────────────────────
 alias tp='topydo'
 alias tpc='topydo columns'
 alias tpa='topydo add'
 alias tpls='topydo ls -F "[%C>%D%X] %S (%u) %k"'
-
 
 alias cl='clear'
 alias ll='ls -lah'
