@@ -1,3 +1,4 @@
+spawn-at-startup "bash" "/home/glebkiva/scripts/niri_portal_startup.bash"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "vicinae" "server"
 spawn-at-startup "lavalauncher"
