@@ -150,7 +150,7 @@ export PATH="$HOME/scripts:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# lean-ctx shell hook — begin
-if [ -f "/home/glebkiva/.config/lean-ctx/shell-hook.zsh" ]; then
-. "/home/glebkiva/.config/lean-ctx/shell-hook.zsh"
-fi
+
+# >>> Codex installer >>>
+export PATH="/home/glebkiva/.local/bin:$PATH"
+# <<< Codex installer <<<

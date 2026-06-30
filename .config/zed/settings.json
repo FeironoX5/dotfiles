@@ -252,7 +252,8 @@
   "disable_ai": false,
   "agent_ui_font_size": 13.0,
   "agent": {
-    "terminal_init_command": "kimi",
+    "notify_when_agent_waiting": "all_screens",
+    // "terminal_init_command": "kimi",
     "tool_permissions": {
       "tools": {
         "mcp:chrome-devtools-mcp-zed:take_snapshot": {
@@ -296,11 +297,14 @@
     "use_modifier_to_send": true,
     "show_turn_stats": true,
     "enable_feedback": false,
-    "play_sound_when_agent_done": "never",
+    "play_sound_when_agent_done": "always",
   },
 
   "agent_servers": {
     "codex-acp": {
+      "default_config_options": {
+        "reasoning_effort": "xhigh"
+      },
       "favorite_config_option_values": {
         "reasoning_effort": ["medium"],
       },

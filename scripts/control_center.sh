@@ -35,10 +35,11 @@ dnd_state() {
   fi
 }
 vpn_state() {
-  if out=$(sudo -n /home/glebkiva/scripts/vpn_check.bash 2>/dev/null); then
+  if out=$(/home/glebkiva/scripts/vpn_check.bash 2>/dev/null); then
     case "$out" in
       *'"class":"connected"') echo "connected" ;;
       *'"class":"loading"') echo "loading" ;;
+      *'"class":"failed"') echo "failed" ;;
       *) echo "disconnected" ;;
     esac
   else
@@ -68,7 +69,7 @@ toggle_bt() {
   if [[ "$(bt_power)" == "yes" ]]; then bluetoothctl power off >/dev/null; else bluetoothctl power on >/dev/null; fi
 }
 toggle_dnd() { command -v swaync-client >/dev/null 2>&1 && swaync-client -d -sw >/dev/null; }
-toggle_vpn() { sudo -n /home/glebkiva/scripts/vpn_toggle.bash >/dev/null; }
+toggle_vpn() { /home/glebkiva/scripts/vpn_toggle.bash >/dev/null; }
 
 vol_up() { if command -v pamixer >/dev/null 2>&1; then pamixer -i 5; else pactl set-sink-volume @DEFAULT_SINK@ +5%; fi }
 vol_down(){ if command -v pamixer >/dev/null 2>&1; then pamixer -d 5; else pactl set-sink-volume @DEFAULT_SINK@ -5%; fi }

@@ -3,6 +3,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "vicinae" "server"
 spawn-at-startup "lavalauncher"
 spawn-sh-at-startup "swaybg -o eDP-1 -i $(cat ~/.config/wallpaper-last.txt) -m fill"
+spawn-sh-at-startup "handy --start-hidden"
 spawn-at-startup "keepassxc"
 
 input {
@@ -67,6 +68,7 @@ binds {
     XF86MonBrightnessUp { spawn-sh "brightnessctl set +10%"; }
     XF86MonBrightnessDown { spawn-sh "brightnessctl set 10%-"; }
     Mod+0 { spawn-sh "/home/glebkiva/.local/bin/toggle-gamma"; }
+    Mod+Minus { spawn-sh "handy --toggle-transcription"; }
     //SS(}]}}}
     Mod+H cooldown-ms=70 { focus-window-up-or-column-left; }
     Mod+J cooldown-ms=70 { focus-workspace-down; }
@@ -366,6 +368,15 @@ window-rule {
 window-rule {
     match app-id="obsidian"
     opacity 1.0
+}
+
+window-rule {
+    match app-id=r#"^dev\.zed\.Zed-Preview$"# title=null
+    open-floating true
+    open-focused false
+    default-column-width {}
+    default-window-height {}
+    default-floating-position x=10 y=40 relative-to="bottom-left"
 }
 
 window-rule {

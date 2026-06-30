@@ -101,6 +101,9 @@ tooltip label {
 #custom-vpn.loading {
     color: @t-orange;
 }
+#custom-vpn.failed {
+    color: #d15049;
+}
 #custom-vpn.disconnected {
     opacity: 0.6;
 }
