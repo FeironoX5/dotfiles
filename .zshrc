@@ -108,6 +108,9 @@ alias tpc='topydo columns'
 alias tpa='topydo add'
 alias tpls='topydo ls -F "[%C>%D%X] %S (%u) %k"'
 
+alias cdx='clear && codex resume'
+alias cdx-um='codex-user-messages'
+
 alias cl='clear'
 alias ll='ls -lah'
 alias la='ls -A'

@@ -371,12 +371,18 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^dev\.zed\.Zed-Preview$"# title=null
+    match app-id=r#"^dev\.zed\.Zed-Preview$"#
     open-floating true
     open-focused false
     default-column-width {}
     default-window-height {}
     default-floating-position x=10 y=40 relative-to="bottom-left"
+}
+
+window-rule {
+    match app-id=r#"^dev\.zed\.Zed-Preview$"# title=r#"^.+$"#
+    open-floating false
+    open-focused true
 }
 
 window-rule {

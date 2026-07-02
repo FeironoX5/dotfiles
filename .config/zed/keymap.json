@@ -6,6 +6,7 @@
       // для работы с проектом
       "alt-space": "command_palette::Toggle",
       "alt-w": "pane::CloseActiveItem",
+      "alt-q": "agents_sidebar::ToggleThreadSwitcher",
       "alt-r": "task::Spawn",
       "alt-f": "workspace::ToggleZoom",
       "jfklds": "workspace::ToggleAllDocks",
