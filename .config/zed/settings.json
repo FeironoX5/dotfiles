@@ -24,7 +24,7 @@
   "theme": {
     "mode": "dark",
     "light": "Base16 Tomorrow",
-    "dark": "GitHub Dark",
+    "dark": "Ayu Darker",
   },
   "icon_theme": {
     "mode": "dark",
@@ -40,7 +40,7 @@
   "buffer_font_size": 12,
   "buffer_line_height": "standard",
   "markdown_preview_font_family": "Noto Serif",
-  "markdown_preview_theme": "Catppuccin Mocha - No Italics",
+  // "markdown_preview_theme": "Catppuccin Mocha - No Italics",
 
   // Layout
   "resize_all_panels_in_dock": ["left", "bottom", "right"],
@@ -218,6 +218,7 @@
   },
 
   "git_panel": {
+    "group_by": "status",
     "sort_by_path": true,
     "dock": "left",
     "tree_view": true,
@@ -331,20 +332,26 @@
     "Prolog": ["pl", "pro"],
   },
 
-  // "languages": {
-  //   "TypeScript": {
-  //     "language_servers": ["angular", "vtsls", "deno"],
-  //   },
-  //   "JavaScript": {
-  //     "language_servers": ["vtsls", "deno"],
-  //   },
+  "languages": {
+    "TypeScript": {
+      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+    },
+    "TSX": {
+      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+    },
+    "JavaScript": {
+      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+    },
+    "JSX": {
+      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+    },
   //   "HTML": {
   //     "language_servers": ["angular", "html"],
   //   },
   //   "JSON": {
   //     "formatter": "language_server",
   //   },
-  // },
+  },
   "lsp": {
     "vtsls": {
       "settings": {
@@ -383,6 +390,7 @@
     "git-firefly": true,
     "html": true,
     "ruff": true,
+    "tsgo": true,
     "toml": true,
   },
 

@@ -139,8 +139,17 @@
             "launchPrefix": "uwsm app --"
          },
          "entrypoints": {
+            "Steam Linux Runtime 2.0 (soldier)": {
+               "enabled": false
+            },
             "appimagekit_40cf3bc19439bf86d554e8ae0970f271-Todoist": {
                "alias": "todos"
+            },
+            "chrome-dlgohinmglaoopaiplliaecdpmnepmga-Default": {
+               "alias": "tds"
+            },
+            "org.telegram": {
+               "alias": "tg"
             }
          }
       },

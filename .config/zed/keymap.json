@@ -424,7 +424,8 @@
     "context": "Editor && extension == md",
     "bindings": {
       "ctrl-0": ["workspace::MoveItemToPaneInDirection", {"direction": "left"}],
-      "ctrl-p": ["action::Sequence", ["markdown::OpenPreview", "pane::ActivatePreviousItem", "workspace::MoveItemToPaneInDirection"]],
+      "ctrl-p": "markdown::OpenPreview",
+      "ctrl-alt-p": ["action::Sequence", ["markdown::OpenPreview", "pane::ActivatePreviousItem", "workspace::MoveItemToPaneInDirection"]],
       "ctrl-d": ["workspace::SendKeystrokes", "( d o n e )"]
     }
   },

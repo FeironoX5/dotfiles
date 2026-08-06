@@ -26,11 +26,11 @@
     "custom/vpn": {
         "signal": 8,
         "format": "◉ {}",
-        "exec": "/home/glebkiva/scripts/vpn_check.bash",
+        "exec": "~/.dotfiles/scripts/vpn.bash waybar",
         "return-type": "json",
-        "on-click": "/home/glebkiva/scripts/vpn_toggle.bash",
+        "on-click": "~/.dotfiles/scripts/vpn.bash waybar-toggle",
         "interval": 3,
-        "rotate": 270,          // rotated for vertical bar
+        "rotate": 270,
     },
 
     "custom/letterboxd": {

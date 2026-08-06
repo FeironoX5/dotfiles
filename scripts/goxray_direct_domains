@@ -1,0 +1,15 @@
+# One hostname or wildcard suffix per line. NetworkManager's dnsmasq adds DNS
+# answers for these names to the nftables direct-routing set.
+
+github.com
+api.github.com
+codeload.github.com
+gist.github.com
+raw.githubusercontent.com
+objects.githubusercontent.com
+github.githubassets.com
+avatars.githubusercontent.com
+
+*.ru
+
+*.yandex.net
