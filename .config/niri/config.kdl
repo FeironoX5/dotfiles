@@ -7,6 +7,7 @@ spawn-sh-at-startup "swaybg -o eDP-1 -i $(cat ~/.config/wallpaper-last.txt) -m f
 spawn-sh-at-startup "handy --start-hidden"
 spawn-at-startup "keepassxc"
 spawn-at-startup "v2rayn"
+spawn-at-startup "~/Applications/Sefirah-3.0.0-x64.AppImage"
 
 input {
     // todo disable-power-key-handling
@@ -376,7 +377,7 @@ window-rule {
 window-rule {
     match app-id="chrome-dlgohinmglaoopaiplliaecdpmnepmga-Default"
     opacity 1.0
-    default-column-width { proportion 0.4; }
+    default-column-width { proportion 0.6; }
 }
 
 window-rule {
