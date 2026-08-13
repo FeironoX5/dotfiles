@@ -108,6 +108,8 @@ alias tpc='topydo columns'
 alias tpa='topydo add'
 alias tpls='topydo ls -F "[%C>%D%X] %S (%u) %k"'
 
+alias tl='~/scripts/todoist-log.py'
+
 alias cdx='clear && codex resume'
 alias cdx-um='codex-user-messages'
 
@@ -147,6 +149,7 @@ export PATH="$PATH:$HOME/Devtools/flutter/bin"
 export PATH="/home/glebkiva/fvm/bin:$PATH"
 export PATH="$HOME/.local/kitty.app/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
+export TODOIST_API_TOKEN="$(cat ~/keys/todoist.txt)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

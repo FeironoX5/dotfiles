@@ -334,16 +334,19 @@
 
   "languages": {
     "TypeScript": {
-      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+      "language_servers": ["typescript-ls", "eslint", "!vtsls", "!typescript-language-server", "!deno", "!oxlint", "!oxfmt"],
     },
     "TSX": {
-      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+      "language_servers": ["typescript-ls", "eslint", "!vtsls", "!typescript-language-server", "!deno", "!oxlint", "!oxfmt"],
     },
     "JavaScript": {
-      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+      "language_servers": ["typescript-ls", "eslint", "!vtsls", "!typescript-language-server", "!deno", "!oxlint", "!oxfmt"],
     },
     "JSX": {
-      "language_servers": ["tsgo", "!vtsls", "!typescript-language-server", "..."],
+      "language_servers": ["typescript-ls", "eslint", "!vtsls", "!typescript-language-server", "!deno", "!oxlint", "!oxfmt"],
+    },
+    "Vue.js": {
+      "language_servers": ["vue-language-server", "eslint", "!typescript-ls", "!vtsls", "!typescript-language-server", "!deno", "!oxlint", "!oxfmt", "!tailwindcss-language-server"],
     },
   //   "HTML": {
   //     "language_servers": ["angular", "html"],
@@ -353,21 +356,6 @@
   //   },
   },
   "lsp": {
-    "vtsls": {
-      "settings": {
-        "typescript": {
-          "updateImportsOnFileMove": {
-            "enabled": "never",
-          },
-        },
-        "javascript": {
-          "updateImportsOnFileMove": {
-            "enabled": "never",
-          },
-        },
-      },
-      "enable_lsp_tasks": true,
-    },
     "jdtls": {
       "settings": {
         "java_home": "/usr/lib/jvm/java-21-openjdk",

@@ -92,6 +92,7 @@ binds {
     Mod+Q repeat=false { spawn "/usr/bin/ghostty"; }
     Mod+E repeat=false { spawn "helium"; }
     Mod+D repeat=false { spawn-sh "window_id=$(niri msg -j windows | jq -r --arg app_id 'chrome-dlgohinmglaoopaiplliaecdpmnepmga-Default' 'first(.[] | select(.app_id == $app_id) | .id)'); if [ -n \"$window_id\" ]; then niri msg action focus-window --id \"$window_id\"; else exec /opt/helium/helium-wrapper --profile-directory=Default --app-id=dlgohinmglaoopaiplliaecdpmnepmga; fi"; }
+    Mod+C repeat=false { spawn-sh "window_id=$(niri msg -j windows | jq -r --arg app_id 'chrome-ihilakljcogaiegiclghmdfdiekbghae-Default' 'first(.[] | select(.app_id == $app_id) | .id)'); if [ -n \"$window_id\" ]; then niri msg action focus-window --id \"$window_id\"; else exec /opt/helium/helium-wrapper --profile-directory=Default --app-id=ihilakljcogaiegiclghmdfdiekbghae; fi"; }
     // Mod+D repeat=false { spawn-sh "flatpak run io.github.zhrexl.thisweekinmylife"; }
     //
     Mod+W repeat=false { close-window; }
