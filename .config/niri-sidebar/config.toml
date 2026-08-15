@@ -1,0 +1,26 @@
+# Dedicated AI drawer managed by niri-sidebar.
+
+[geometry]
+width = 680
+height = 1067
+gap = 0
+
+[margins]
+top = 0
+right = 0
+left = 0
+bottom = -1
+
+[interaction]
+position = "left"
+peek = 0
+focus_peek = 0
+sticky = false
+
+[[window_rule]]
+app_id = "^dev[.]glebkiva[.]ai_chat$"
+width = 680
+height = 1067
+peek = 0
+focus_peek = 0
+auto_add = true

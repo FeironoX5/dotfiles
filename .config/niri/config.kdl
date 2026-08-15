@@ -3,11 +3,12 @@ spawn-at-startup "xwayland-satellite"
 // spawn-at-startup "niri-float-sticky" "-app-id" "io.github.focustimerhq.FocusTimer"
 spawn-at-startup "vicinae" "server"
 spawn-at-startup "lavalauncher"
+spawn-at-startup "/home/glebkiva/.dotfiles/scripts/ai-chat-layer.py"
 spawn-sh-at-startup "swaybg -o eDP-1 -i $(cat ~/.config/wallpaper-last.txt) -m fill"
 spawn-sh-at-startup "handy --start-hidden"
 spawn-at-startup "keepassxc"
 spawn-at-startup "v2rayn"
-spawn-at-startup "~/Applications/Sefirah-3.0.0-x64.AppImage"
+// spawn-at-startup "~/Applications/Sefirah-3.0.0-x64.AppImage"
 
 input {
     // todo disable-power-key-handling
@@ -52,6 +53,7 @@ workspace "anchor" {
     }
 }
 
+
 cursor {
     xcursor-theme "macOS"
     xcursor-size 23
@@ -90,9 +92,10 @@ binds {
     Mod+4 repeat=false { focus-workspace 6; }
     //
     Mod+Q repeat=false { spawn "/usr/bin/ghostty"; }
+    Mod+slash repeat=false { spawn-sh "~/.dotfiles/scripts/ai-sidebar.bash toggle"; }
     Mod+E repeat=false { spawn "helium"; }
     Mod+D repeat=false { spawn-sh "window_id=$(niri msg -j windows | jq -r --arg app_id 'chrome-dlgohinmglaoopaiplliaecdpmnepmga-Default' 'first(.[] | select(.app_id == $app_id) | .id)'); if [ -n \"$window_id\" ]; then niri msg action focus-window --id \"$window_id\"; else exec /opt/helium/helium-wrapper --profile-directory=Default --app-id=dlgohinmglaoopaiplliaecdpmnepmga; fi"; }
-    Mod+C repeat=false { spawn-sh "window_id=$(niri msg -j windows | jq -r --arg app_id 'chrome-ihilakljcogaiegiclghmdfdiekbghae-Default' 'first(.[] | select(.app_id == $app_id) | .id)'); if [ -n \"$window_id\" ]; then niri msg action focus-window --id \"$window_id\"; else exec /opt/helium/helium-wrapper --profile-directory=Default --app-id=ihilakljcogaiegiclghmdfdiekbghae; fi"; }
+    Mod+C repeat=false { spawn-sh "window_id=$(niri msg -j windows | jq -r --arg app_id 'chrome-localhost__-Default' 'first(.[] | select(.app_id == $app_id) | .id)'); if [ -n \"$window_id\" ]; then niri msg action focus-window --id \"$window_id\"; else exec /opt/helium/helium-wrapper --profile-directory=Default --app=http://localhost:9080; fi"; }
     // Mod+D repeat=false { spawn-sh "flatpak run io.github.zhrexl.thisweekinmylife"; }
     //
     Mod+W repeat=false { close-window; }
@@ -218,6 +221,17 @@ layer-rule {
     }
     geometry-corner-radius 16
     opacity 0.72
+}
+
+layer-rule {
+    match namespace="^ai-chat$"
+    opacity 1.0
+    shadow {
+        off
+    }
+    background-effect {
+        blur false
+    }
 }
 
 layer-rule {
@@ -377,6 +391,12 @@ window-rule {
 
 window-rule {
     match app-id="chrome-dlgohinmglaoopaiplliaecdpmnepmga-Default"
+    opacity 1.0
+    default-column-width { proportion 0.4; }
+}
+
+window-rule {
+    match app-id="chrome-localhost__-Default"
     opacity 1.0
     default-column-width { proportion 0.6; }
 }

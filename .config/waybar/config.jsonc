@@ -1,19 +1,19 @@
 {
-    "layer": "top",
+    "layer": "overlay",
     "position": "left",        // changed: top → left
+    "width": 30,
     "margin-left": 0,
     "margin-top": 0,
     "margin-bottom": 0,
     "spacing": 6,
 
     // In vertical mode: modules-left = top, modules-center = middle, modules-right = bottom
-    "modules-left": ["niri/workspaces", "niri/window"],
+    "modules-left": ["custom/ai", "niri/workspaces", "niri/window"],
 
     "modules-center": ["custom/codeforces", "custom/lichess"],
 
     "modules-right": [
         "tray",
-        "custom/vpn",
         "custom/wifi",
         "bluetooth",
         "niri/language",
@@ -31,6 +31,16 @@
         "on-click": "~/.dotfiles/scripts/vpn.bash waybar-toggle",
         "interval": 3,
         "rotate": 270,
+    },
+
+    "custom/ai": {
+        "format": "{}",
+        "exec": "~/.dotfiles/scripts/ai-sidebar.bash status",
+        "return-type": "json",
+        "on-click": "~/.dotfiles/scripts/ai-sidebar.bash toggle",
+        "interval": 2,
+        "signal": 9,
+        "tooltip": true,
     },
 
     "custom/letterboxd": {

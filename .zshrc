@@ -143,7 +143,6 @@ alias helios='ssh s408766@helios.cs.ifmo.ru -P 2222'
 
 # ── 11. PATH ──────────────────────────────────────────────────────────────────
 export PATH=$HOME/.local/bin:$PATH
-export PATH=/home/glebkiva/.opencode/bin:$PATH
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Devtools/flutter/bin"
 export PATH="/home/glebkiva/fvm/bin:$PATH"

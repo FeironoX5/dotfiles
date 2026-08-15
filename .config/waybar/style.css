@@ -24,7 +24,7 @@ tooltip label {
 /* In vertical mode the root child is a vertical box */
 #waybar.left > box.vertical {
     padding: 25px 6px;           /* умеренный отступ со всех сторон */
-    padding-top: 10px;
+    padding-top: 6px;
 }
 
 /* ── Modules Top (modules-left) ────────────────────────── */
@@ -64,6 +64,44 @@ tooltip label {
 #custom-letterboxd,
 #custom-lichess,
 #custom-codeforces {
+    color: @t-color;
+}
+
+#custom-ai {
+    color: @t-color;
+    min-width: 0;
+    min-height: 0;
+    margin-bottom: 2px;
+    padding: 4px 0;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+#custom-ai:hover,
+#custom-ai:focus {
+    color: @t-hover-color;
+    background: rgba(255, 255, 255, 0.06);
+}
+#custom-ai:active {
+    color: @t-active-color;
+    background: rgba(255, 255, 255, 0.12);
+}
+#custom-ai.visible {
+    color: @t-active-color;
+    background: rgba(255, 255, 255, 0.08);
+}
+#custom-ai.working {
+    color: @t-orange;
+}
+#custom-ai.blocked {
+    color: #d15049;
+}
+#custom-ai.done {
+    color: @t-green;
+}
+#custom-ai.hidden {
+    color: #7aa2f7;
+}
+#custom-ai.offline {
     color: @t-color;
 }
 
